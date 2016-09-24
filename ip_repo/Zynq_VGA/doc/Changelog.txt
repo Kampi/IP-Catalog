@@ -1,0 +1,7 @@
+2015.3: 
+* Version 1.0 (Rev. 1) 
+* Release
+
+2016.1: 
+* Version 1.02 (Rev. 1) 
+* Fixed some issues with VGA-Timing
