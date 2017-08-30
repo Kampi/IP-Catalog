@@ -10,18 +10,18 @@ proc create_ipi_design { offsetfile design_name } {
 	set_property CONFIG.ASSOCIATED_RESET ARESETN $ACLK
 
 	# Create instance: AXI_VGA_0, and set properties
-	set AXI_VGA_0 [ create_bd_cell -type ip -vlnv www.kampis-elektroecke.de:Kampis-Elektroecke:AXI_VGA:1.0 AXI_VGA_0]
+	set AXI_VGA_0 [ create_bd_cell -type ip -vlnv user.org:user:AXI_VGA:1.0 AXI_VGA_0]
 
 	# Create instance: master_0, and set properties
 	set master_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:cdn_axi_bfm master_0]
 	set_property -dict [ list CONFIG.C_PROTOCOL_SELECTION {2} ] $master_0
 
 	# Create interface connections
-	connect_bd_intf_net [get_bd_intf_pins master_0/M_AXI_LITE] [get_bd_intf_pins AXI_VGA_0/S00_AXI]
+	connect_bd_intf_net [get_bd_intf_pins master_0/M_AXI_LITE] [get_bd_intf_pins AXI_VGA_0/S_AXI]
 
 	# Create port connections
-	connect_bd_net -net aclk_net [get_bd_ports ACLK] [get_bd_pins master_0/M_AXI_LITE_ACLK] [get_bd_pins AXI_VGA_0/S00_AXI_ACLK]
-	connect_bd_net -net aresetn_net [get_bd_ports ARESETN] [get_bd_pins master_0/M_AXI_LITE_ARESETN] [get_bd_pins AXI_VGA_0/S00_AXI_ARESETN]
+	connect_bd_net -net aclk_net [get_bd_ports ACLK] [get_bd_pins master_0/M_AXI_LITE_ACLK] [get_bd_pins AXI_VGA_0/S_AXI_ACLK]
+	connect_bd_net -net aresetn_net [get_bd_ports ARESETN] [get_bd_pins master_0/M_AXI_LITE_ARESETN] [get_bd_pins AXI_VGA_0/S_AXI_ARESETN]
 
 	# Auto assign address
 	assign_bd_address
@@ -40,13 +40,13 @@ proc create_ipi_design { offsetfile design_name } {
 
 	set offset [get_property OFFSET [get_bd_addr_segs -of_objects [get_bd_addr_spaces master_0/Data_lite]]]
 	set offset_hex [string replace $offset 0 1 "32'h"]
-	puts $fp "`define S00_AXI_SLAVE_ADDRESS ${offset_hex}"
+	puts $fp "`define S_AXI_SLAVE_ADDRESS ${offset_hex}"
 
 	puts $fp "`endif"
 	close $fp
 }
 
-set ip_path [file dirname [file normalize [get_property XML_FILE_NAME [ipx::get_cores www.kampis-elektroecke.de:Kampis-Elektroecke:AXI_VGA:1.0]]]]
+set ip_path [file dirname [file normalize [get_property XML_FILE_NAME [ipx::get_cores user.org:user:AXI_VGA:1.0]]]]
 set test_bench_file ${ip_path}/example_designs/bfm_design/AXI_VGA_v1_0_tb.v
 set interface_address_vh_file ""
 

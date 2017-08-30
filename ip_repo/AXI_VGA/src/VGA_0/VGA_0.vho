@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2016 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:1.0
--- IP Revision: 4
+-- IP Revision: 9
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -57,7 +57,6 @@ COMPONENT VGA_0
     Clock_VGA : IN STD_LOGIC;
     Reset : IN STD_LOGIC;
     Mode : IN STD_LOGIC;
-    Read_Write : IN STD_LOGIC;
     Display_DataIn : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
     Display_Addr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
     HSync : OUT STD_LOGIC;
@@ -76,7 +75,6 @@ your_instance_name : VGA_0
     Clock_VGA => Clock_VGA,
     Reset => Reset,
     Mode => Mode,
-    Read_Write => Read_Write,
     Display_DataIn => Display_DataIn,
     Display_Addr => Display_Addr,
     HSync => HSync,

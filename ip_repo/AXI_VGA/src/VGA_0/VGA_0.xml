@@ -57,11 +57,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue May 31 18:21:02 UTC 2016</spirit:value>
+            <spirit:value>Sun Jan 15 19:33:28 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>38b6adcf</spirit:value>
+            <spirit:value>027162c5</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -69,7 +69,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>09f7fecc</spirit:value>
+            <spirit:value>b17970ea</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -105,18 +105,6 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>Mode</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>STD_LOGIC</spirit:typeName>
-              <spirit:viewNameRef>xilinx_vhdlinstantiationtemplate</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>Read_Write</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -286,7 +274,7 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>VGA</xilinx:displayName>
-      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreRevision>9</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="user.org:user:VGA:1.0_ARCHIVE_LOCATION">/home/daniel/Schreibtisch/VGA</xilinx:tag>
         <xilinx:tag xilinx:name="www.kampis-elektroecke.de:user:VGA:1.0_ARCHIVE_LOCATION">/home/daniel/Schreibtisch/VGA</xilinx:tag>
@@ -298,8 +286,8 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2016.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="51663342"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3d2111ed"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="37511c36"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bd6b105a"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="12ffe915"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="e4a8d385"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="a3d6080c"/>
     </xilinx:packagingInfo>

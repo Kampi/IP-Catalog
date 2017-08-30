@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Tue Dec  6 22:50:46 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="f81c5c094033462197ec67ba8faf5ecd" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="CoreView" value="1" type="JavaHandler"/>
+<property name="EditInIPPackagerHandler" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="2" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="2" type="JavaHandler"/>
+<property name="OpenIPLocationHandler" value="1" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="7" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreDetailsView_VENDOR, www.kampis-elektroecke.de" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, AXI Peripheral ;  ;  ;  ; , 1" value="3" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, AXI Peripheral ;  ;  ;  ; , 1, AXI Peripheral, 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, Kampis-Elektroecke ;  ;  ;  ; , 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, Kampis-Elektroecke ;  ;  ;  ; , 2, Kampis-Elektroecke, 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, Kampis-Elektroecke ;  ;  ;  ; , 5" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, User Repository ;  ;  ;  ; , 0, User Repository, 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, User Repository ;  ;  ;  ; , 5" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, VGA ;  ; Production ; Included ; www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:1.0, 6, VGA, 0, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, VGA ;  ; Production ; Included ; www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:1.0, 6, VGA, 0, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_CLOSE_PROJECT, Close Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_EDIT_IN_IP_PACKAGER, Edit in IP Packager" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_IP_PACKAGER_WIZARD, Create and Package IP..." value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_IP_LOCATION, Open IP Location..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.EditIPProjectNameChooser_PROJECT_NAME, I2C_Transmit" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, I2S_Transmitter - I2S_Transmitter_Arch (I2S_Transmitter.vhd" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, IP Catalog], 4, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_MANAGE_IP, Manage IP" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.IdentificationContentPanel_COMPANY_URL_DISPLAY_NAME, http://www.kampis-elektroecke.de" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.IdentificationContentPanel_COMPANY_URL_DISPLAY_NAME, www.kampis-elektroecke.de" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.IdentificationContentPanel_LIBRARY, Kampis-Elektroecke" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.IdentificationContentPanel_VENDOR, www.kampis-elektroecke.de" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_REPORT, Report" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_TOOLS, Tools" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_WINDOW, Window" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.NewIpWizard_IP_DEFINITION_SOURCE_LOCATION, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaxonomyChooserPanel_ADD_NEW_IP_CATEGORY, Package IP_new" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaxonomyChooserPanel_CHECK_BOX_TREE, [, UserIP], 77, false, false, ui.utils.TriState.True" value="2" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaxonomyChooserPanel_CHECK_BOX_TREE, [, UserIP], 77, false, true, ui.utils.TriState.False" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaxonomyChooserPanel_CHECK_BOX_TREE, [, UserIP], 78, false, true, ui.utils.TriState.False" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaxonomyChooserPanel_TEXT_FIELD, Kampis-Elektroecke" value="1" type="GuiResourceData"/>
+<property name="RDIResource.AbstractCombinedPanel_ADD_ELEMENT, Add" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="5" type="GuiResourceData"/>
+<property name="RDIResource.HListPanel_CHOOSER_LIST, /UserIP, 0" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="45" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="37" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

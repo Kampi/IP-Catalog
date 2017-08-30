@@ -95,9 +95,9 @@ u8 VGA_CfgInitialize(axivga *InstancePtr, axivga_Config *Config, u32 EffectiveAd
 ********************************************************************************/
 axivga_Config* VGA_LookupConfig(u16 DeviceId)
 {
-    u8 Index;
-	axivga_Config* CfgPtr = NULL;
-    extern axivga_Config axivga_ConfigTable[];
+    	u8 Index;
+    	axivga_Config* CfgPtr = NULL;
+    	extern axivga_Config axivga_ConfigTable[];
 
 	for (Index = 0; Index < XPAR_AXI_VGA_NUM_INSTANCES; Index++) 
 	{
