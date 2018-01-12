@@ -5,9 +5,9 @@ use ieee.numeric_std.all;
 entity AXI_VGA_v1_0_S_AXI is
 	generic (
 		-- Users to add parameters here
-		Color_Width         : integer := 16;
-        Width               : integer := 640;
-        Heigth              : integer := 480;
+        HEIGHT : integer := 480;
+        WIDTH : integer := 640;
+        COLOR : integer := 16;
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
 
@@ -21,7 +21,7 @@ entity AXI_VGA_v1_0_S_AXI is
         Clock_VGA   : in std_logic;
         HSync       : out std_logic;
         VSync       : out std_logic;
-        RGB         : out std_logic_vector(15 downto 0);
+        RGB         : out std_logic_vector((COLOR - 1) downto 0);
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -124,18 +124,18 @@ architecture arch_imp of AXI_VGA_v1_0_S_AXI is
 
 	component VGA_0 is
 	   generic (
-	       Width : integer := 640;
-	       Heigth : integer := 480;
-	       Color_Width : integer := 16
+            Height : integer := 480;
+            Width : integer := 640;
+            COLOR : integer := 16
 	       );
        port (  Clock_VGA : IN STD_LOGIC;
                Reset : IN STD_LOGIC;
                Mode : IN STD_LOGIC;
-               Display_DataIn : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+               Display_Data : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
                Display_Addr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
                HSync : OUT STD_LOGIC;
                VSync : OUT STD_LOGIC;
-               RGB : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+               RGB : OUT STD_LOGIC_VECTOR((COLOR - 1) DOWNTO 0)
        );
 	end component VGA_0;
 
@@ -402,16 +402,16 @@ begin
 	-- Add user logic here
     VGA_Controller: component VGA_0
         generic map (
-           Heigth => Heigth,
-           Width => Width,
-           Color_Width => Color_Width
+           Height => HEIGHT,
+           Width => WIDTH,
+           COLOR => COLOR
         )
         port map (  Clock_VGA => Clock_VGA,
                     VSync => VSync,
                     HSync => HSync,
                     RGB(15 downto 0) => RGB(15 downto 0),
                     Display_Addr(12 downto 0) => slv_reg0(12 downto 0),
-                    Display_DataIn(23 downto 0) => slv_reg1(23 downto 0),
+                    Display_Data(23 downto 0) => slv_reg1(23 downto 0),
                     Mode => slv_reg2(0),
                     Reset => S_AXI_ARESETN or slv_reg2(2)
                     );

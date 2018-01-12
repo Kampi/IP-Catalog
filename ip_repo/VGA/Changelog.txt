@@ -1,0 +1,8 @@
+2016.1: 
+* Version 1.0.1 (Rev. 1) 
+* Initial Version
+
+2016.4: 
+* Version 2.0.1 (Rev. 1) 
+* Code formating and bugfixes
+

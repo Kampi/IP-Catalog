@@ -5,10 +5,11 @@ use ieee.numeric_std.all;
 entity AXI_VGA_v1_0 is
 	generic (
 		-- Users to add parameters here
-
+        HEIGHT : integer := 480;
+        WIDTH : integer := 640;
+        COLOR : integer := 16;
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
-
 
 		-- Parameters of Axi Slave Bus Interface S_AXI
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
@@ -19,10 +20,9 @@ entity AXI_VGA_v1_0 is
         Clock_VGA	: in std_logic;
         HSync       : out std_logic;
         VSync       : out std_logic;
-        RGB         : out std_logic_vector(15 downto 0);
+        RGB         : out std_logic_vector((COLOR - 1) downto 0);
 		-- User ports ends
 		-- Do not modify the ports beyond this line
-
 
 		-- Ports of Axi Slave Bus Interface S_AXI
 		s_axi_aclk	: in std_logic;
@@ -54,6 +54,9 @@ architecture arch_imp of AXI_VGA_v1_0 is
 	-- component declaration
 	component AXI_VGA_v1_0_S_AXI is
 		generic (
+        HEIGHT : integer := 480;
+        WIDTH : integer := 640;
+        COLOR : integer := 16;
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
 		C_S_AXI_ADDR_WIDTH	: integer	:= 4
 		);
@@ -61,7 +64,7 @@ architecture arch_imp of AXI_VGA_v1_0 is
 		Clock_VGA	: in std_logic;
         HSync       : out std_logic;
         VSync       : out std_logic;
-        RGB         : out std_logic_vector(15 downto 0);
+        RGB         : out std_logic_vector((COLOR - 1) downto 0);
 		S_AXI_ACLK	: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -92,7 +95,10 @@ begin
 AXI_VGA_v1_0_S_AXI_inst : AXI_VGA_v1_0_S_AXI
 	generic map (
 		C_S_AXI_DATA_WIDTH	=> C_S_AXI_DATA_WIDTH,
-		C_S_AXI_ADDR_WIDTH	=> C_S_AXI_ADDR_WIDTH
+		C_S_AXI_ADDR_WIDTH	=> C_S_AXI_ADDR_WIDTH,
+		HEIGHT => HEIGHT,
+		WIDTH => WIDTH,
+		COLOR => COLOR
 	)
 	port map (
 		S_AXI_ACLK	=> s_axi_aclk,

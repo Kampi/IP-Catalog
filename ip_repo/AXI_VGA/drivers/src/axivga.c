@@ -14,7 +14,7 @@
 *
 * Ver   Who    Date		Changes
 * ----- -----  -------- -----------------------------------------------
-* 1.00  dk     02/14/15 First release
+* 1.00  dk     09/01/18 First release
 *
 * </pre>
 *
@@ -27,55 +27,40 @@
 
 #include "axivga.h"
 
-
-/*******************************************************************************/
-/*
+/*****************************************************************************/
+/**
 *
+* This function initializes a specific Axivga device/instance. This function
+* must be called prior to using the XADC device.
 *
+* @param	InstancePtr is a pointer to the Axivga instance.
+* @param	ConfigPtr points to the Axivga device configuration structure.
+* @param	EffectiveAddr is the device base address in the virtual memory
+*		    address space. If the address translation is not used then the
+*		    physical address is passed.
+*		    Unexpected errors may occur if the address mapping is changed
+*		    after this function is invoked.
 *
-* @param	
+* @return
+*		- XST_SUCCESS if successful.
 *
-* @return	
+* @note		The user needs to first call the XAdcPs_LookupConfig() API
+*		    which returns the Configuration structure pointer which is
+*		    passed as a parameter to the Axivga_CfgInitialize() API.
 *
-* @note		None.
-*
-********************************************************************************/
-u8 VGA_Initialize(axivga* InstancePtr, u16 DeviceId)
+******************************************************************************/
+u8 VGA_CfgInitialize(Axivga* InstancePtr, Axivga_Config* ConfigPtr, u32 EffectiveAddr)
 {
-	u8 Status;
-	axivga_Config* ConfigPtr = VGA_LookupConfig(DeviceId);
+    u32 RegValue;
 
 	Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(ConfigPtr != NULL);
+    
+	InstancePtr->Config.DeviceId = ConfigPtr->DeviceId;
+    InstancePtr->Config.BaseAddress = EffectiveAddr;
 
-	if (ConfigPtr == (axivga_Config*) NULL) 
-	{
-		InstancePtr->IsReady = 0;
-		return (XST_DEVICE_NOT_FOUND);
-	}
+    axivga_mWriteReg(InstancePtr->Config.BaseAddress, CONFIG, 0x03);
 
-	Status = VGA_CfgInitialize(InstancePtr, ConfigPtr,  ConfigPtr->BaseAddress);
-	axivga_mWriteReg(InstancePtr->BaseAddress, CONFIG, 0x03);
-
-	return Status;
-}
-
-/*******************************************************************************/
-/*
-*
-*
-*
-* @param	
-*
-* @return	
-*
-* @note		None.
-*
-********************************************************************************/
-u8 VGA_CfgInitialize(axivga *InstancePtr, axivga_Config *Config, u32 EffectiveAddr)
-{
-    Xil_AssertNonvoid(InstancePtr != NULL);
-
-    InstancePtr->BaseAddress = EffectiveAddr;
     InstancePtr->IsReady = XIL_COMPONENT_IS_READY;
 
     return XST_SUCCESS;
@@ -86,29 +71,18 @@ u8 VGA_CfgInitialize(axivga *InstancePtr, axivga_Config *Config, u32 EffectiveAd
 *
 *
 *
-* @param	DeviceId is a pointer to the XUartPs instance
+* @param	
 *
-* @return	Pointer to device configuration
+* @return	None.
 *
 * @note		None.
 *
 ********************************************************************************/
-axivga_Config* VGA_LookupConfig(u16 DeviceId)
+
+void VGA_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u32 Color)
 {
-    	u8 Index;
-    	axivga_Config* CfgPtr = NULL;
-    	extern axivga_Config axivga_ConfigTable[];
-
-	for (Index = 0; Index < XPAR_AXI_VGA_NUM_INSTANCES; Index++) 
-	{
-		if (axivga_ConfigTable[Index].DeviceId == DeviceId) 
-		{
-			CfgPtr = &axivga_ConfigTable[Index];
-			break;
-		}
-	}
-
-	return CfgPtr;
+	axivga_mWriteReg(InstancePtr->Config.BaseAddress, ADDRESS, Position);
+	axivga_mWriteReg(InstancePtr->Config.BaseAddress, DATA, (Color << 8) + Character);
 }
 
 /*******************************************************************************/
@@ -124,31 +98,12 @@ axivga_Config* VGA_LookupConfig(u16 DeviceId)
 *
 ********************************************************************************/
 
-void VGA_WriteCharacter(axivga *InstancePtr, char Character, u32 Position, u32 Color)
-{
-	axivga_mWriteReg(InstancePtr->BaseAddress, ADDRESS, Position);
-	axivga_mWriteReg(InstancePtr->BaseAddress, DATA, (Color << 8) + Character);
-}
-
-/*******************************************************************************/
-/*
-*
-*
-*
-* @param	
-*
-* @return	None.
-*
-* @note		None.
-*
-********************************************************************************/
-
-void VGA_WriteString(axivga *InstancePtr, char *Message, u32 Position, u32 Color)
+void VGA_WriteString(Axivga* InstancePtr, char *Message, u32 Position, u32 Color)
 {
 	while(*(Message) != '\0')
 	{
-		axivga_mWriteReg(InstancePtr->BaseAddress, ADDRESS, Position++);
-		axivga_mWriteReg(InstancePtr->BaseAddress, DATA, (Color << 8) + *(Message++));
+		axivga_mWriteReg(InstancePtr->Config.BaseAddress, ADDRESS, Position++);
+		axivga_mWriteReg(InstancePtr->Config.BaseAddress, DATA, (Color << 8) + *(Message++));
 	}
 }
 
@@ -164,9 +119,9 @@ void VGA_WriteString(axivga *InstancePtr, char *Message, u32 Position, u32 Color
 * @note		None.
 *
 ********************************************************************************/
-u32 VGA_ReadCursor(axivga *InstancePtr)
+u32 VGA_ReadCursor(Axivga* InstancePtr)
 {
-	return axivga_mReadReg(InstancePtr->BaseAddress, ADDRESS);
+	return axivga_mReadReg(InstancePtr->Config.BaseAddress, ADDRESS);
 }
 
 /*******************************************************************************/
@@ -181,7 +136,7 @@ u32 VGA_ReadCursor(axivga *InstancePtr)
 * @note		None.
 *
 ********************************************************************************/
-void VGA_SoftReset(axivga *InstancePtr)
+void VGA_SoftReset(Axivga* InstancePtr)
 {
-	axivga_mReadReg(InstancePtr->BaseAddress, CONFIG);
+	axivga_mReadReg(InstancePtr->Config.BaseAddress, CONFIG);
 }

@@ -28,12 +28,11 @@
  * @note    Self test may fail if data memory and device are not on the same bus.
  *
  */
-XStatus AXI_VGA_Reg_SelfTest(void * baseaddr_p)
+XStatus AXI_VGA_Reg_SelfTest(void* baseaddr_p)
 {
 	u32 baseaddr;
 	int write_loop_index;
 	int read_loop_index;
-	int Index;
 
 	baseaddr = (u32) baseaddr_p;
 
@@ -47,9 +46,9 @@ XStatus AXI_VGA_Reg_SelfTest(void * baseaddr_p)
 	xil_printf("User logic slave module test...\n\r");
 
 	for (write_loop_index = 0 ; write_loop_index < 4; write_loop_index++)
-	  AXI_VGA_mWriteReg (baseaddr, write_loop_index*4, (write_loop_index+1)*READ_WRITE_MUL_FACTOR);
+	  axivga_mWriteReg (baseaddr, write_loop_index*4, (write_loop_index+1)*READ_WRITE_MUL_FACTOR);
 	for (read_loop_index = 0 ; read_loop_index < 4; read_loop_index++)
-	  if ( AXI_VGA_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+	  if ( axivga_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
 	    xil_printf ("Error reading register value at address %x\n", (int)baseaddr + read_loop_index*4);
 	    return XST_FAILURE;
 	  }

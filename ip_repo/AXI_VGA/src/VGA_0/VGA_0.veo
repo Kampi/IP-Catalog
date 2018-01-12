@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2018 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -46,8 +46,8 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
-// IP VLNV: www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:1.0
-// IP Revision: 9
+// IP VLNV: www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:2.0
+// IP Revision: 3
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,14 +55,15 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 VGA_0 your_instance_name (
-  .Clock_VGA(Clock_VGA),            // input wire Clock_VGA
-  .Reset(Reset),                    // input wire Reset
-  .Mode(Mode),                      // input wire Mode
-  .Display_DataIn(Display_DataIn),  // input wire [23 : 0] Display_DataIn
-  .Display_Addr(Display_Addr),      // input wire [12 : 0] Display_Addr
-  .HSync(HSync),                    // output wire HSync
-  .VSync(VSync),                    // output wire VSync
-  .RGB(RGB)                        // output wire [15 : 0] RGB
+  .Clock_VGA(Clock_VGA),        // input wire Clock_VGA
+  .Reset(Reset),                // input wire Reset
+  .Mode(Mode),                  // input wire Mode
+  .Read_Write(Read_Write),      // input wire Read_Write
+  .Display_Data(Display_Data),  // input wire [23 : 0] Display_Data
+  .Display_Addr(Display_Addr),  // input wire [12 : 0] Display_Addr
+  .HSync(HSync),                // output wire HSync
+  .VSync(VSync),                // output wire VSync
+  .RGB(RGB)                    // output wire [15 : 0] RGB
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 
