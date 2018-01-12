@@ -46,7 +46,7 @@ extern Axivga_Config Axivga_ConfigTable[];
 * @note		None.
 *
 ********************************************************************************/
-Axivga_Config* VGA_LookupConfig(u16 DeviceId)
+Axivga_Config* Axivga_LookupConfig(u16 DeviceId)
 {
 	Axivga_Config* CfgPtr = NULL;
 	u32 Index;

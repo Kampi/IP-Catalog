@@ -103,7 +103,7 @@ begin
     process(Clock_VGA, Reset, Pixel_Counter) 
     begin
         if (rising_edge(Clock_VGA)) then
-            if(Reset = '0') then
+            if(Reset = '1') then
                 HSync <= '1';
                 VSync <= '1';
                 Pixel_Counter <= 0;

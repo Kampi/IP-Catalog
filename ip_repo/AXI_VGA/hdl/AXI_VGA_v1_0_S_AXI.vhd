@@ -123,20 +123,17 @@ architecture arch_imp of AXI_VGA_v1_0_S_AXI is
 	signal byte_index	: integer;
 
 	component VGA_0 is
-	   generic (
-            Height : integer := 480;
-            Width : integer := 640;
-            COLOR : integer := 16
-	       );
-       port (  Clock_VGA : IN STD_LOGIC;
-               Reset : IN STD_LOGIC;
-               Mode : IN STD_LOGIC;
-               Display_Data : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
-               Display_Addr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
-               HSync : OUT STD_LOGIC;
-               VSync : OUT STD_LOGIC;
-               RGB : OUT STD_LOGIC_VECTOR((COLOR - 1) DOWNTO 0)
-       );
+	   generic (   COLOR : integer := 16
+	               );
+        port (  Clock_VGA : in STD_LOGIC;
+                Reset : in STD_LOGIC;
+                WEA : in STD_LOGIC;
+                Display_Data : in STD_LOGIC_VECTOR(23 DOWNTO 0);
+                Display_WriteAddr : in STD_LOGIC_VECTOR(12 DOWNTO 0);
+                HSync : out STD_LOGIC;
+                VSync : out STD_LOGIC;
+                RGB : out STD_LOGIC_VECTOR(15 DOWNTO 0)
+                );
 	end component VGA_0;
 
 begin
@@ -401,19 +398,15 @@ begin
 
 	-- Add user logic here
     VGA_Controller: component VGA_0
-        generic map (
-           Height => HEIGHT,
-           Width => WIDTH,
-           COLOR => COLOR
-        )
+        generic map (COLOR => COLOR)
         port map (  Clock_VGA => Clock_VGA,
                     VSync => VSync,
                     HSync => HSync,
-                    RGB(15 downto 0) => RGB(15 downto 0),
-                    Display_Addr(12 downto 0) => slv_reg0(12 downto 0),
+                    RGB => RGB,
+                    Display_WriteAddr => slv_reg0(12 downto 0),
                     Display_Data(23 downto 0) => slv_reg1(23 downto 0),
-                    Mode => slv_reg2(0),
-                    Reset => S_AXI_ARESETN or slv_reg2(2)
+                    WEA => slv_reg2(0),
+                    Reset => slv_reg2(7)
                     );
 	-- User logic ends
 

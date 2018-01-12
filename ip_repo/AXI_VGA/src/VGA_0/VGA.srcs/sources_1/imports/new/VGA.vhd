@@ -14,7 +14,7 @@
 -- 
 -- Revision             0.0.1   - File Created
 --                      1.0.0   - Initial release
---                      2.0.0   - Fix some bugs
+--                      2.0.0   - Fix some bugs and rework the IP-Core
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
@@ -34,10 +34,9 @@ entity VGA is
             );
     Port (  Clock_VGA   : in STD_LOGIC;                                                 -- Taktsignal für VGA-Logik
             Reset       : in STD_LOGIC;                                                 -- Reset für VGA-Logik
-            Mode        : in STD_LOGIC;                                                 -- Auswahl Betriebsmodus, 0 -> Grafik, 1 -> Text
-            Read_Write  : in STD_LOGIC;                                                 -- Lesen oder Schreiben aus Display RAM, 0 -> Schreiben, 1 -> Lesen
-            Display_Data: in STD_LOGIC_VECTOR((COLOR + Char_Size - 1) downto 0);        -- Daten zum Beschreiben des Display-RAMs
-            Display_Addr: in UNSIGNED(12 downto 0);                                     -- Adresse für Display-RAM
+            WEA         : in STD_LOGIC;                                                 -- Schreiben aktivieren
+            Display_Data: in STD_LOGIC_VECTOR((COLOR + Char_Size - 1) downto 0);        -- Daten zum Beschreiben des Display-RAMs Bit 0 -7 = Buchstabe, 8 - 23 = Farbe
+            Display_WriteAddr: in STD_LOGIC_VECTOR(12 downto 0);                        -- Adresse für Display-RAM (Schreiben)
             HSync       : out STD_LOGIC;                                                -- Ausgang für H-Sync Signal
             VSync       : out STD_LOGIC;                                                -- Ausgang für V-Sync Signal
             RGB         : out STD_LOGIC_VECTOR((COLOR - 1) downto 0)                    -- RGB Ausgang für das VGA-Signal
@@ -47,36 +46,36 @@ end VGA;
 architecture VGA_Arch of VGA is
 
     -- Koordinaten des Zeigers auf dem Bildschirm
-    signal Pixel_x_delay_0      : unsigned(9 downto 0);               
-    signal Pixel_y_delay_0      : unsigned(9 downto 0); 
-    signal Pixel_x_delay_1      : unsigned(9 downto 0);               
-    signal Pixel_y_delay_1      : unsigned(9 downto 0); 
-    signal Pixel_x_delay_2      : unsigned(9 downto 0);               
-    signal Pixel_y_delay_2      : unsigned(9 downto 0); 
-    signal Pixel_x_delay_3      : unsigned(9 downto 0);               
-    signal Pixel_y_delay_3      : unsigned(9 downto 0); 
+    signal Pixel_x_delay_0      : unsigned(9 downto 0) := (others => '0');               
+    signal Pixel_y_delay_0      : unsigned(9 downto 0) := (others => '0'); 
+    signal Pixel_x_delay_1      : unsigned(9 downto 0) := (others => '0');               
+    signal Pixel_y_delay_1      : unsigned(9 downto 0) := (others => '0'); 
+    signal Pixel_x_delay_2      : unsigned(9 downto 0) := (others => '0');               
+    signal Pixel_y_delay_2      : unsigned(9 downto 0) := (others => '0'); 
+    signal Pixel_x_delay_3      : unsigned(9 downto 0) := (others => '0');               
+    signal Pixel_y_delay_3      : unsigned(9 downto 0) := (others => '0');
 
-    signal HSync_delay_0        : std_logic;
-    signal VSync_delay_0        : std_logic;
-    signal HSync_delay_1        : std_logic;
-    signal VSync_delay_1        : std_logic; 
-    signal HSync_delay_2        : std_logic;
-    signal VSync_delay_2        : std_logic; 
-    signal HSync_delay_3        : std_logic;
-    signal VSync_delay_3        : std_logic; 
-    signal HSync_delay_4        : std_logic;
-    signal VSync_delay_4        : std_logic; 
+    signal HSync_delay_0        : std_logic := '0';
+    signal VSync_delay_0        : std_logic := '0';
+    signal HSync_delay_1        : std_logic := '0';
+    signal VSync_delay_1        : std_logic := '0';
+    signal HSync_delay_2        : std_logic := '0';
+    signal VSync_delay_2        : std_logic := '0';
+    signal HSync_delay_3        : std_logic := '0';
+    signal VSync_delay_3        : std_logic := '0';
+    signal HSync_delay_4        : std_logic := '0';
+    signal VSync_delay_4        : std_logic := '0';
 
     -- Font ROM
     signal ROM_Data             : std_logic_vector(0 to (ROM_Data_Width - 1));
     signal ROM_Address          : std_logic_vector(0 to (ROM_Address_Width - 1));
-    signal ROM_Bit              : std_logic;
-    signal Row_Addr             : std_logic_vector(2 downto 0);
-    signal Col_Addr             : std_logic_vector(2 downto 0);
+    signal ROM_Bit              : std_logic := '0';
+    signal Row_Addr             : std_logic_vector(2 downto 0) := (others => '0');
+    signal Col_Addr             : std_logic_vector(2 downto 0) := (others => '0');
 
     -- Display RAM
-    signal Display_Address      : unsigned(12 downto 0) := (others => '0');
-    signal Zeichen_Address      : unsigned(6 downto 0);
+    signal Display_Addr         : unsigned(12 downto 0) := (others => '0');
+    signal Symbol_Address       : unsigned(6 downto 0) := (others => '0');
     signal Offset               : unsigned(12 downto 0) := (others => '0');
     signal Display_Buffer       : std_logic_vector((COLOR + Char_Size - 1) downto 0);
     signal Character_Vector     : std_logic_vector((Char_Size - 1) downto 0); 
@@ -91,29 +90,36 @@ architecture VGA_Arch of VGA is
                 x_out       : out UNSIGNED(9 downto 0);                
                 y_out       : out UNSIGNED(9 downto 0) 
                 );
-    end component VGA_Timing;  
+    end component;  
 
     -- Font-ROM für VGA-Controller
-    component Font_ROM is
-        port (  ROM_Address : in STD_LOGIC_VECTOR((ROM_Address_Width - 1) downto 0);
-                ROM_Clock   : in STD_LOGIC;
-                ROM_DataOut : out STD_LOGIC_VECTOR((ROM_Data_Width - 1) downto 0)
+--    component Font_ROM is
+--        port (  ROM_Address : in STD_LOGIC_VECTOR((ROM_Address_Width - 1) downto 0);
+--                ROM_Clock   : in STD_LOGIC;
+--                ROM_DataOut : out STD_LOGIC_VECTOR((ROM_Data_Width - 1) downto 0)
+--                );
+
+    --Font-ROM für VGA-Controller
+    component Font is
+        port (  clka    : in STD_LOGIC;
+                addra   : in STD_LOGIC_VECTOR((ROM_Address_Width - 1) downto 0);
+                douta   : out STD_LOGIC_VECTOR((ROM_Data_Width - 1) downto 0)
                 );
-    end component Font_ROM;
+    end component;
 
     -- Display RAM für das Bild    
     component Display_RAM
         Generic (
-                Addr_Width : integer := 13;
-                Data_Width : integer := 24
+                ADDR_WIDTH : integer := 13;
+                DATA_WIDTH : integer := 24
                 );
-        Port (  Display_Clock_Read : in STD_LOGIC;
-                Display_Clock_Write: in STD_LOGIC;   
-                Display_Read_Write  : in STD_LOGIC;
-                Display_Read_Addr   : in UNSIGNED((Addr_Width - 1) downto 0);
-                Display_Write_Addr  : in UNSIGNED((Addr_Width - 1) downto 0);
-                Display_Data_Out    : out STD_LOGIC_VECTOR ((Data_Width - 1) downto 0);
-                Display_Data_In     : in STD_LOGIC_VECTOR ((Data_Width - 1) downto 0)
+        Port (  clka  : in STD_LOGIC;
+                wea   : in STD_LOGIC_VECTOR(0 downto 0);
+                addra : in STD_LOGIC_VECTOR((ADDR_WIDTH - 1) downto 0);
+                dina  : in STD_LOGIC_VECTOR((DATA_WIDTH - 1) downto 0);
+                clkb  : in STD_LOGIC;
+                addrb : in STD_LOGIC_VECTOR((ADDR_WIDTH - 1) downto 0);
+                doutb : out STD_LOGIC_VECTOR((DATA_WIDTH - 1) downto 0)
                 );
     end component;
 
@@ -130,25 +136,25 @@ begin
                                             y_out => Pixel_y_delay_0
                                             );
 
-    Char_Font       : Font_ROM port map (   ROM_Address => ROM_Address, 
-                                            ROM_Clock => Clock_VGA, 
-                                            ROM_DataOut => ROM_Data
-                                            );
+    Char_Font       : Font port map (   clka => Clock_VGA, 
+                                        addra => ROM_Address, 
+                                        douta => ROM_Data
+                                        );
  
-    Display         : Display_RAM port map (Display_Clock_Read => Clock_VGA,
-                                            Display_Clock_Write => Clock_VGA,
-                                            Display_Read_Write => Read_Write, 
-                                            Display_Read_Addr => Display_Address, 
-                                            Display_Write_Addr => Display_Address, 
-                                            Display_Data_Out => Display_Buffer,
-                                            Display_Data_In => Display_Data
+    Display         : Display_RAM port map (clkb => Clock_VGA,
+                                            addrb => std_logic_vector(Display_Addr),
+                                            doutb => Display_Buffer,
+                                            clka => Clock_VGA,
+                                            wea(0) => WEA, 
+                                            addra => std_logic_vector(Display_Addr), 
+                                            dina => Display_Data
                                             ); 
     
     --Farbausgabe    
     process(Clock_VGA)
     begin
         if(rising_edge(Clock_VGA)) then
-            if(Read_Write = '1') then 
+            if(WEA = '0') then 
                 if((ROM_Bit = '1')) then
                     RGB <= Color_Vector;
                 else
@@ -168,13 +174,13 @@ begin
     Col_Addr    <= std_logic_vector(Pixel_x_delay_2(2 downto 0));
     ROM_Bit     <= ROM_Data(to_integer(unsigned(Col_Addr)));     
 
-    Zeichen_Address <= Pixel_x_delay_0(9 downto 3);   
-    Display_Address <= (Offset + Zeichen_Address) when (Read_Write = '1') else Display_Addr; 
+    Symbol_Address <= Pixel_x_delay_0(9 downto 3);   
+    Display_Addr <= (Offset + Symbol_Address) when (WEA = '0') else unsigned(Display_WriteAddr); 
 
     process(Clock_VGA)
     begin 
         if(rising_edge(Clock_VGA)) then  
-            if(Read_Write = '1') then
+            if(WEA = '0') then
                 if(Pixel_x_delay_0(2 downto 0) = "000") then
                     if((Pixel_x_delay_0 = 0) and (Pixel_y_delay_0 = 0)) then
                         Offset <= to_unsigned(0, Offset'length);

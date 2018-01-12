@@ -49,7 +49,7 @@
 *		    passed as a parameter to the Axivga_CfgInitialize() API.
 *
 ******************************************************************************/
-u8 VGA_CfgInitialize(Axivga* InstancePtr, Axivga_Config* ConfigPtr, u32 EffectiveAddr)
+u8 Axivga_CfgInitialize(Axivga* InstancePtr, Axivga_Config* ConfigPtr, u32 EffectiveAddr)
 {
     u32 RegValue;
 
@@ -79,10 +79,18 @@ u8 VGA_CfgInitialize(Axivga* InstancePtr, Axivga_Config* ConfigPtr, u32 Effectiv
 *
 ********************************************************************************/
 
-void VGA_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u32 Color)
+void Axivga_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u32 Color)
 {
-	axivga_mWriteReg(InstancePtr->Config.BaseAddress, ADDRESS, Position);
-	axivga_mWriteReg(InstancePtr->Config.BaseAddress, DATA, (Color << 8) + Character);
+	// Read config register
+    u32 RegValue = axivga_mReadReg(InstancePtr->Config.BaseAddress, CONFIG);
+    
+    // Set write bit and write data to display RAM
+    axivga_mWriteReg(InstancePtr->Config.BaseAddress, CONFIG, RegValue | WEA);
+    axivga_mWriteReg(InstancePtr->Config.BaseAddress, ADDRESS, Position);
+    axivga_mWriteReg(InstancePtr->Config.BaseAddress, DATA, (Color << 8) + Character);
+    
+    // Clear write bit
+    axivga_mWriteReg(InstancePtr->Config.BaseAddress, CONFIG, RegValue & ~(WEA));
 }
 
 /*******************************************************************************/
@@ -98,12 +106,11 @@ void VGA_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u32 C
 *
 ********************************************************************************/
 
-void VGA_WriteString(Axivga* InstancePtr, char *Message, u32 Position, u32 Color)
+void Axivga_WriteString(Axivga* InstancePtr, char *Message, u32 Position, u32 Color)
 {
 	while(*(Message) != '\0')
 	{
-		axivga_mWriteReg(InstancePtr->Config.BaseAddress, ADDRESS, Position++);
-		axivga_mWriteReg(InstancePtr->Config.BaseAddress, DATA, (Color << 8) + *(Message++));
+		Axivga_WriteCharacter(InstancePtr, *(Message++), Position++, Color);
 	}
 }
 
@@ -119,7 +126,7 @@ void VGA_WriteString(Axivga* InstancePtr, char *Message, u32 Position, u32 Color
 * @note		None.
 *
 ********************************************************************************/
-u32 VGA_ReadCursor(Axivga* InstancePtr)
+u32 Axivga_ReadCursor(Axivga* InstancePtr)
 {
 	return axivga_mReadReg(InstancePtr->Config.BaseAddress, ADDRESS);
 }
@@ -136,7 +143,11 @@ u32 VGA_ReadCursor(Axivga* InstancePtr)
 * @note		None.
 *
 ********************************************************************************/
-void VGA_SoftReset(Axivga* InstancePtr)
+void Axivga_SoftReset(Axivga* InstancePtr)
 {
-	axivga_mReadReg(InstancePtr->Config.BaseAddress, CONFIG);
+    // Read config register
+	u32 RegValue = axivga_mReadReg(InstancePtr->Config.BaseAddress, CONFIG);
+	
+	// Set reset bit and write value to config register
+	axivga_mWriteReg(InstancePtr->Config.BaseAddress, CONFIG, RegValue | RESET);
 }

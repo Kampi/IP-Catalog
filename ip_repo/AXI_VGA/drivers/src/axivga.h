@@ -32,6 +32,8 @@
 #include "xstatus.h"
 #include "xil_io.h"
 
+#include "axivga_hw.h"
+
 /*******************************************************************************/
 /*                        G L O B A L   V A R I A B L E S                      */
 /*******************************************************************************/
@@ -54,35 +56,17 @@ typedef struct {
 	u32 IsReady;		/* Device is initialized and ready */
 } Axivga;
 
-#define AXI_VGA_S00_AXI_SLV_REG0_OFFSET                 0
-#define AXI_VGA_S00_AXI_SLV_REG1_OFFSET                 4
-#define AXI_VGA_S00_AXI_SLV_REG2_OFFSET                 8
-#define AXI_VGA_S00_AXI_SLV_REG3_OFFSET                 12
-#define AXI_VGA_S00_AXI_SLV_REG4_OFFSET                 16
-#define AXI_VGA_S00_AXI_SLV_REG5_OFFSET                 20
-#define AXI_VGA_S00_AXI_SLV_REG6_OFFSET                 24
-#define AXI_VGA_S00_AXI_SLV_REG7_OFFSET                 28
-
-#define CONFIG							                 AXI_VGA_S00_AXI_SLV_REG2_OFFSET
-#define ADDRESS							                 AXI_VGA_S00_AXI_SLV_REG0_OFFSET
-#define DATA							                 AXI_VGA_S00_AXI_SLV_REG1_OFFSET
-
-#define axivga_mReadReg(BaseAddress, RegOffset) \
-    Xil_In32((BaseAddress) + (RegOffset))
-#define axivga_mWriteReg(BaseAddress, RegOffset, Data) \
-    Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
-
 /*******************************************************************************/
 /*                    F U N C T I O N   D E C L A R A T I O N S                */
 /*******************************************************************************/
 
-Axivga_Config* VGA_LookupConfig(u16 DeviceId);
-u8 VGA_CfgInitialize(Axivga* InstancePtr, Axivga_Config* Config, u32 EffectiveAddr);
+Axivga_Config* Axivga_LookupConfig(u16 DeviceId);
+u8 Axivga_CfgInitialize(Axivga* InstancePtr, Axivga_Config* Config, u32 EffectiveAddr);
 
-void VGA_WriteCharacter(Axivga *InstancePtr, char Character, u32 Position, u32 Color);
-void VGA_WriteString(Axivga *InstancePtr, char* Message, u32 Position, u32 Color);
+void Axivga_WriteCharacter(Axivga *InstancePtr, char Character, u32 Position, u32 Color);
+void Axivga_WriteString(Axivga *InstancePtr, char* Message, u32 Position, u32 Color);
 
-u32 VGA_ReadCursor(Axivga *InstancePtr);
-void VGA_SoftReset(Axivga *InstancePtr);
+u32 Axivga_ReadCursor(Axivga *InstancePtr);
+void Axivga_SoftReset(Axivga *InstancePtr);
 
 #endif /* AXIVGA_H_ */

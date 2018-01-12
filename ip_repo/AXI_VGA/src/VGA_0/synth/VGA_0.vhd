@@ -46,8 +46,8 @@
 -- 
 -- DO NOT MODIFY THIS FILE.
 
--- IP VLNV: www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:2.0
--- IP Revision: 3
+-- IP VLNV: www.kampis-elektroecke.de:Kampis-Elektroecke:VGA:2.0.1
+-- IP Revision: 4
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -57,10 +57,9 @@ ENTITY VGA_0 IS
   PORT (
     Clock_VGA : IN STD_LOGIC;
     Reset : IN STD_LOGIC;
-    Mode : IN STD_LOGIC;
-    Read_Write : IN STD_LOGIC;
+    WEA : IN STD_LOGIC;
     Display_Data : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
-    Display_Addr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+    Display_WriteAddr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
     HSync : OUT STD_LOGIC;
     VSync : OUT STD_LOGIC;
     RGB : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
@@ -82,10 +81,9 @@ ARCHITECTURE VGA_0_arch OF VGA_0 IS
     PORT (
       Clock_VGA : IN STD_LOGIC;
       Reset : IN STD_LOGIC;
-      Mode : IN STD_LOGIC;
-      Read_Write : IN STD_LOGIC;
+      WEA : IN STD_LOGIC;
       Display_Data : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
-      Display_Addr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+      Display_WriteAddr : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
       HSync : OUT STD_LOGIC;
       VSync : OUT STD_LOGIC;
       RGB : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
@@ -111,10 +109,9 @@ BEGIN
     PORT MAP (
       Clock_VGA => Clock_VGA,
       Reset => Reset,
-      Mode => Mode,
-      Read_Write => Read_Write,
+      WEA => WEA,
       Display_Data => Display_Data,
-      Display_Addr => Display_Addr,
+      Display_WriteAddr => Display_WriteAddr,
       HSync => HSync,
       VSync => VSync,
       RGB => RGB
