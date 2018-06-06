@@ -1,0 +1,343 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
+| Date         : Fri Feb  9 10:15:20 2018
+| Host         : daniel-VM running 64-bit Ubuntu 14.04.5 LTS
+| Command      : report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -name Timing -file /home/daniel/Schreibtisch/Git/IP/ip_repo/ClockDivider/doc/Timing_Report.txt
+| Design       : ClockDivider
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  false
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock
+2. checking constant_clock
+3. checking pulse_width_clock
+4. checking unconstrained_internal_endpoints
+5. checking no_input_delay
+6. checking no_output_delay
+7. checking multiple_clock
+8. checking generated_clocks
+9. checking loops
+10. checking partial_input_delay
+11. checking partial_output_delay
+12. checking latch_loops
+
+1. checking no_clock
+--------------------
+ There is 1 register/latch pin with no clock driven by root clock pin: Clock_In (HIGH)
+
+Prescaling.Clock_Int_reg/C
+
+
+2. checking constant_clock
+--------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock
+-----------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints
+--------------------------------------------
+ There are 2 pins that are not constrained for maximum delay. (HIGH)
+
+Prescaling.Clock_Int_reg/CLR
+Prescaling.Clock_Int_reg/D
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay
+--------------------------
+ There is 1 input port with no input delay specified. (HIGH)
+
+Reset
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay
+---------------------------
+ There is 1 port with no output delay specified. (HIGH)
+
+Clock_Out
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock
+--------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks
+----------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops
+-----------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay
+--------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay
+---------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops
+------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+        inf        0.000                      0                    3          inf        0.000                      0                    3           NA           NA                      NA                    NA  
+
+
+There are no user specified timing constraints.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay             3 Endpoints
+Min Delay             3 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 Prescaling.Clock_Int_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Clock_Out
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        4.076ns  (logic 3.276ns (80.380%)  route 0.800ns (19.620%))
+  Logic Levels:           2  (FDCE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         FDCE                         0.000     0.000 r  Prescaling.Clock_Int_reg/C
+                         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  Prescaling.Clock_Int_reg/Q
+                         net (fo=2, unplaced)         0.800     1.256    Clock_Out_OBUF
+                                                                      r  Clock_Out_OBUF_inst/I
+                         OBUF (Prop_obuf_I_O)         2.820     4.076 r  Clock_Out_OBUF_inst/O
+                         net (fo=0)                   0.000     4.076    Clock_Out
+                                                                      r  Clock_Out (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Reset
+                            (input port)
+  Destination:            Prescaling.Clock_Int_reg/CLR
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        1.782ns  (logic 0.982ns (55.126%)  route 0.800ns (44.874%))
+  Logic Levels:           1  (IBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                                                      0.000     0.000 f  Reset (IN)
+                         net (fo=0)                   0.000     0.000    Reset
+                                                                      f  Reset_IBUF_inst/I
+                         IBUF (Prop_ibuf_I_O)         0.982     0.982 f  Reset_IBUF_inst/O
+                         net (fo=1, unplaced)         0.800     1.782    Reset_IBUF
+                         FDCE                                         f  Prescaling.Clock_Int_reg/CLR
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Prescaling.Clock_Int_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Prescaling.Clock_Int_reg/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        1.073ns  (logic 0.751ns (69.991%)  route 0.322ns (30.009%))
+  Logic Levels:           2  (FDCE=1 LUT1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         FDCE                         0.000     0.000 r  Prescaling.Clock_Int_reg/C
+                         FDCE (Prop_fdce_C_Q)         0.456     0.456 f  Prescaling.Clock_Int_reg/Q
+                         net (fo=2, unplaced)         0.322     0.778    Clock_Out_OBUF
+                                                                      f  Prescaling.Clock_Int_i_1/I0
+                         LUT1 (Prop_lut1_I0_O)        0.295     1.073 r  Prescaling.Clock_Int_i_1/O
+                         net (fo=1, unplaced)         0.000     1.073    Prescaling.Clock_Int_i_1_n_0
+                         FDCE                                         r  Prescaling.Clock_Int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 Prescaling.Clock_Int_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Prescaling.Clock_Int_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.375ns  (logic 0.239ns (63.779%)  route 0.136ns (36.221%))
+  Logic Levels:           2  (FDCE=1 LUT1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         FDCE                         0.000     0.000 r  Prescaling.Clock_Int_reg/C
+                         FDCE (Prop_fdce_C_Q)         0.141     0.141 f  Prescaling.Clock_Int_reg/Q
+                         net (fo=2, unplaced)         0.136     0.277    Clock_Out_OBUF
+                                                                      f  Prescaling.Clock_Int_i_1/I0
+                         LUT1 (Prop_lut1_I0_O)        0.098     0.375 r  Prescaling.Clock_Int_i_1/O
+                         net (fo=1, unplaced)         0.000     0.375    Prescaling.Clock_Int_i_1_n_0
+                         FDCE                                         r  Prescaling.Clock_Int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Reset
+                            (input port)
+  Destination:            Prescaling.Clock_Int_reg/CLR
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.548ns  (logic 0.211ns (38.506%)  route 0.337ns (61.494%))
+  Logic Levels:           1  (IBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                                                      0.000     0.000 f  Reset (IN)
+                         net (fo=0)                   0.000     0.000    Reset
+                                                                      f  Reset_IBUF_inst/I
+                         IBUF (Prop_ibuf_I_O)         0.211     0.211 f  Reset_IBUF_inst/O
+                         net (fo=1, unplaced)         0.337     0.548    Reset_IBUF
+                         FDCE                                         f  Prescaling.Clock_Int_reg/CLR
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 Prescaling.Clock_Int_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            Clock_Out
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.694ns  (logic 1.357ns (80.100%)  route 0.337ns (19.900%))
+  Logic Levels:           2  (FDCE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         FDCE                         0.000     0.000 r  Prescaling.Clock_Int_reg/C
+                         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  Prescaling.Clock_Int_reg/Q
+                         net (fo=2, unplaced)         0.337     0.478    Clock_Out_OBUF
+                                                                      r  Clock_Out_OBUF_inst/I
+                         OBUF (Prop_obuf_I_O)         1.216     1.694 r  Clock_Out_OBUF_inst/O
+                         net (fo=0)                   0.000     1.694    Clock_Out
+                                                                      r  Clock_Out (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
