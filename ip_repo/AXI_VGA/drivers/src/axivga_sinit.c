@@ -1,5 +1,29 @@
+/*
+ * axivga_sinit.h
+ *
+ *  Copyright (C) Daniel Kampert, 2018
+ *	Website: www.kampis-elektroecke.de
+
+  GNU GENERAL PUBLIC LICENSE:
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Errors and commissions should be reported to DanielKampert@kampis-elektroecke.de
+ */
+
 /*******************************************************************************/
 /*
+
 *
 * @file axivga_sinit.c
 *
@@ -20,19 +44,10 @@
 *
 ********************************************************************************/
 
-
-/*******************************************************************************/
-/*                             I N C L U D E S                                 */
-/*******************************************************************************/
-
 #include "xparameters.h"
 #include "axivga.h"
 
-/*******************************************************************************/
-/*                             V A R I A B L E S                               */
-/*******************************************************************************/
-
-extern Axivga_Config Axivga_ConfigTable[];
+extern AxiVga_Config Axivga_ConfigTable[];
 
 /*******************************************************************************/
 /*
@@ -46,12 +61,12 @@ extern Axivga_Config Axivga_ConfigTable[];
 * @note		None.
 *
 ********************************************************************************/
-Axivga_Config* Axivga_LookupConfig(u16 DeviceId)
+AxiVga_Config* Axivga_LookupConfig(u16 DeviceId)
 {
 	Axivga_Config* CfgPtr = NULL;
 	u32 Index;
 
-	for (Index=0; Index < 1; Index++) 
+	for (Index=0; Index < XPAR_AXIVGA_NUM_INSTANCES; Index++) 
 	{
 		if (Axivga_ConfigTable[Index].DeviceId == DeviceId) 
 		{

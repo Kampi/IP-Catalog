@@ -3,7 +3,6 @@
  *
  *  Copyright (C) Daniel Kampert, 2018
  *	Website: www.kampis-elektroecke.de
- *  File info: Driver for digilent SSD PMOD
 
   GNU GENERAL PUBLIC LICENSE:
   This program is free software: you can redistribute it and/or modify
@@ -24,7 +23,6 @@
 
 /*******************************************************************************/
 /*
-
 *
 * @file axisegment_sinit.c
 *

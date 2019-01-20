@@ -1,30 +1,15 @@
-/*******************************************************************************/
-/*
-*
-* @file axivga.c
-*
-* Functions in this file are the minimum required functions for the
-* axivga driver.
-*
-* @note 	None.
-*
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who    Date		Changes
-* ----- -----  -------- -----------------------------------------------
-* 1.00  dk     09/01/18 First release
-*
-* </pre>
-*
-********************************************************************************/
-
-
-/*******************************************************************************/
-/*                             I N C L U D E S                                 */
-/*******************************************************************************/
-
+/**
+ * @file doxygen_c.h
+ * @author My Self
+ * @date 9 Sep 2012
+ * @brief File containing example of doxygen usage for quick reference.
+ *
+ * Here typically goes a more extensive explanation of what the header
+ * defines. Doxygens tags are words preceeded by either a backslash @\
+ * or by an at symbol @@.
+ * @see http://www.stack.nl/~dimitri/doxygen/docblocks.html
+ * @see http://www.stack.nl/~dimitri/doxygen/commands.html
+ */
 #include "axivga.h"
 
 /*****************************************************************************/
@@ -78,7 +63,6 @@ u8 Axivga_CfgInitialize(Axivga* InstancePtr, Axivga_Config* ConfigPtr, u32 Effec
 * @note		None.
 *
 ********************************************************************************/
-
 void Axivga_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u32 Color)
 {
 	// Read config register
@@ -105,7 +89,6 @@ void Axivga_WriteCharacter(Axivga* InstancePtr, char Character, u32 Position, u3
 * @note		None.
 *
 ********************************************************************************/
-
 void Axivga_WriteString(Axivga* InstancePtr, char *Message, u32 Position, u32 Color)
 {
 	while(*(Message) != '\0')

@@ -1,72 +1,54 @@
-/*******************************************************************************/
 /*
-*
-* @file axivga.h
-*
-* Header file for AXI VGA driver.
-* 
-*
-* @note 	None.
-*
-*
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who    Date		Changes
-* ----- -----  -------- -----------------------------------------------
-* 1.00  dk     09/01/18 First release
-*
-* </pre>
-*
-********************************************************************************/
+ * axivga.h
+ *
+ *  Copyright (C) Daniel Kampert, 2018
+ *	Website: www.kampis-elektroecke.de
+ *  File info: 
+
+  GNU GENERAL PUBLIC LICENSE:
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Errors and commissions should be reported to DanielKampert@kampis-elektroecke.de
+ */
 
 #ifndef AXIVGA_H_
 #define AXIVGA_H_
 
-/*******************************************************************************/
-/*                             I N C L U D E S                                 */
-/*******************************************************************************/
+ #include "xil_io.h"
+ #include "xstatus.h"
+ #include "xil_types.h"
+ #include "xparameters.h"
 
-#include "xparameters.h"
-#include "xil_types.h"
-#include "xstatus.h"
-#include "xil_io.h"
-
-#include "axivga_hw.h"
-
-/*******************************************************************************/
-/*                        G L O B A L   V A R I A B L E S                      */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/*                             I N S T A N C E S                               */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/*                             D E F I N E S                                   */
-/*******************************************************************************/
+ #include "axivga_hw.h"
 
 typedef struct {
-	u16 DeviceId;		/* Unique ID  of device */
-	u32 BaseAddress;	/* Device base address */
-} Axivga_Config;
+	u16 DeviceId;			/* Unique ID  of device */
+	u32 BaseAddress;		/* Device base address */
+} AxiVga_Config;
 
 typedef struct {
-    Axivga_Config Config;   /**< Axivga_Config of current device */
-	u32 IsReady;		/* Device is initialized and ready */
-} Axivga;
+    AxiVga_Config Config;   /* Axivga_Config of current device */
+	u32 IsReady;			/* Device is initialized and ready */
+} AxiVga;
 
-/*******************************************************************************/
-/*                    F U N C T I O N   D E C L A R A T I O N S                */
-/*******************************************************************************/
+AxiVga_Config* Axivga_LookupConfig(u16 DeviceId);
+u8 Axivga_CfgInitialize(AxiVga* InstancePtr, AxiVga_Config* Config, u32 EffectiveAddr);
 
-Axivga_Config* Axivga_LookupConfig(u16 DeviceId);
-u8 Axivga_CfgInitialize(Axivga* InstancePtr, Axivga_Config* Config, u32 EffectiveAddr);
+void Axivga_WriteCharacter(AxiVga *InstancePtr, char Character, u32 Position, u32 Color);
+void Axivga_WriteString(AxiVga *InstancePtr, char* Message, u32 Position, u32 Color);
 
-void Axivga_WriteCharacter(Axivga *InstancePtr, char Character, u32 Position, u32 Color);
-void Axivga_WriteString(Axivga *InstancePtr, char* Message, u32 Position, u32 Color);
-
-u32 Axivga_ReadCursor(Axivga *InstancePtr);
-void Axivga_SoftReset(Axivga *InstancePtr);
+u32 Axivga_ReadCursor(AxiVga *InstancePtr);
+void Axivga_SoftReset(AxiVga *InstancePtr);
 
 #endif /* AXIVGA_H_ */
