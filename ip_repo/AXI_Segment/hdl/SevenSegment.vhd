@@ -74,7 +74,7 @@ begin
     process(Data_Int)
     begin
         case Data_Int is
-            when "0000" => Anode_Int <= "0000000";   
+            when "0000" => Anode_Int <= "0111111";   
             when "0001" => Anode_Int <= "0000110";
             when "0010" => Anode_Int <= "1011011"; 
             when "0011" => Anode_Int <= "1001111";
