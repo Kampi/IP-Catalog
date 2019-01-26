@@ -63,12 +63,18 @@ begin
         end if;        
     end process;
     
-    process(Segment_Int, Data)
+    process(Clock, ResetN, Segment_Int, Data)
     begin
-        case Segment_Int is
-            when '0' => Data_Int <= Data(3 downto 0);
-            when '1' => Data_Int <= Data(7 downto 4);
-        end case;
+        if(rising_edge(Clock)) then
+            if(ResetN = '0') then
+                Data_Int <= (others => '1');
+            else
+                case Segment_Int is
+                    when '0' => Data_Int <= Data(3 downto 0);
+                    when '1' => Data_Int <= Data(7 downto 4);
+                end case;
+            end if;
+        end if;
     end process;
     
     process(Data_Int)
