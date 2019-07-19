@@ -55,19 +55,19 @@ architecture AXI4S_ROM_Arch of AXI4S_ROM is
     signal ROM_Data     : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
     signal DataBuffer   : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
 
-    component ROM is
-        Port (  Address : in STD_LOGIC_VECTOR(10 downto 0);
-                Clock : in STD_LOGIC;
-                DataOut : out STD_LOGIC_VECTOR(15 downto 0)
+    component ROM_blk_mem_gen_0_0 is
+        Port (  clka : in STD_LOGIC;
+                addra : in STD_LOGIC_VECTOR(10 downto 0);
+                douta : out STD_LOGIC_VECTOR(15 downto 0)
                 );
     end component;
 
 begin
 
-    DataROM : ROM port map (Address => ROM_Address,
-                            DataOut => ROM_Data,
-                            Clock => ACLK
-                            );
+    DataROM : ROM_blk_mem_gen_0_0 port map (addra => ROM_Address,
+                                            douta => ROM_Data,
+                                            clka => ACLK
+                                            );
 
     process(ACLK, ARESETN, TREADY, DataBuffer, CurrentState, Address)
     begin
@@ -99,14 +99,11 @@ begin
                     TDATA <= DataBuffer;
                     TID <= STD_LOGIC_VECTOR(to_unsigned(Address, 8));
                     
-                    -- Set TLAST to indicate the end of the package
-                    if      Address = 99 then TLAST <= '1';
-                    else    TLAST <= '0';
-                    end if;
-
-                    -- Reset the address counter if the end is reached
-                    if      Address < 99 then Address <= Address + 1;
-                    else    Address <= 0;
+                    -- Reset the address counter if the end is reached and set TLAST to indicate the end of the package
+                    if      Address = 99 then TLAST <= '1';  
+                                              Address <= 0;
+                    else    TLAST <= '0';  
+                            Address <= Address + 1;
                     end if;
                     
                     CurrentState <= WaitForHandShake;

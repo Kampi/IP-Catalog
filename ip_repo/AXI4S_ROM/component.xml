@@ -54,7 +54,7 @@
       </spirit:portMaps>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>ARESETN</spirit:name>
+      <spirit:name>M_ARESETN</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -71,12 +71,12 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>ACLK</spirit:name>
+      <spirit:name>M_ACLK</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -93,11 +93,11 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_BUSIF">M_AXIS</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_ACLK.ASSOCIATED_BUSIF">M_AXIS</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.ACLK.ASSOCIATED_RESET">ARESETN</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_ACLK.ASSOCIATED_RESET">ARESETN</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -119,7 +119,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f7e77313</spirit:value>
+            <spirit:value>de8c9161</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -138,19 +138,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>172c9565</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_testbench</spirit:name>
-        <spirit:displayName>Test Bench</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:simulation.testbench</spirit:envIdentifier>
-        <spirit:modelName>Testbench</spirit:modelName>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>49db929b</spirit:value>
+            <spirit:value>2030f58b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -320,7 +308,7 @@
       <spirit:file>
         <spirit:name>src/AXI4S_ROM.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_dec735a5</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_211fc351</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -396,6 +384,7 @@
         <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
       </xilinx:supportedFamilies>
       <xilinx:taxonomies>
+        <xilinx:taxonomy>/Embedded_Processing/AXI_Peripheral</xilinx:taxonomy>
         <xilinx:taxonomy>/Kampis-Elektroecke</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>AXI-Stream ROM</xilinx:displayName>
@@ -404,11 +393,11 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
       <xilinx:vendorURL>https://www.kampis-elektroecke.de</xilinx:vendorURL>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>Dynaenergetics.local:user:AXI4S_ROM:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2019-07-18T13:00:26Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2019-07-19T07:51:57Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@71d2c6bd_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/AXI4S_ROM</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@434f62cb_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/AXI4S_ROM</xilinx:tag>
@@ -489,12 +478,51 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@400dc8ca_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7d09974_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7ba77aa6_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ac69415_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8f7468_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58a45ced_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3958cc02_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b0fdefc_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d2de7_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55ea2368_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4423b86_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d9e8ff6_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a5332b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5bb5cd0a_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65483445_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3bd19dd1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ddc4a48_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@310db1a5_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27d235be_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6940881a_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5991b9f5_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24a716ba_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41dc5fe9_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41a65657_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cbe610_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70dbaf7_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42472270_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@644665dd_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ca6eed2_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ae238a1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@499456d2_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@bb0825_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@301bd1b7_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3146c1fc_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6947edd_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@819d2e9_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b1e371b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@381eae60_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3feb5eb4_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@693bc212_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56530c23_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d6726d6_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI4S_ROM</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.3</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="9e0177f0"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d2f48c77"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="2327110e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="fd786eec"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="d653eee9"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="666c95fa"/>
     </xilinx:packagingInfo>
