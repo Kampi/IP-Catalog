@@ -32,21 +32,23 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity AXI4S_ROM is
-    Port ( ACLK     : in STD_LOGIC;
-           ARESETN  : in STD_LOGIC;
+    Generic (   DUAL_CHANNEL_DATA   : BOOLEAN := false
+                );
+    Port ( ACLK         : in STD_LOGIC;
+           ARESETN      : in STD_LOGIC;
            
            -- AXI4S interface
-           TDATA    : out STD_LOGIC_VECTOR(15 downto 0);
-           TID      : out STD_LOGIC_VECTOR(7 downto 0);
-           TREADY   : in STD_LOGIC;
-           TVALID   : out STD_LOGIC;
-           TLAST    : out STD_LOGIC
+           M_TDATA      : out STD_LOGIC_VECTOR(31 downto 0);
+           M_TID        : out STD_LOGIC_VECTOR(7 downto 0);
+           M_TREADY     : in STD_LOGIC;
+           M_TVALID     : out STD_LOGIC;
+           M_TLAST      : out STD_LOGIC
            );
 end AXI4S_ROM;
 
 architecture AXI4S_ROM_Arch of AXI4S_ROM is
 
-    type STATE_t is (Reset, EndOfReset, WaitForReady, SetData, WaitForHandShake);
+    type STATE_t is (Reset, EndOfReset, ReadData, WaitForReady);
     signal CurrentState : STATE_t := Reset;
 
     signal Address      : INTEGER := 0;
@@ -55,10 +57,12 @@ architecture AXI4S_ROM_Arch of AXI4S_ROM is
     signal TVALID_Int   : STD_LOGIC := '0';
 
     signal TID_Int      : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
-    signal TDATA_Int    : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
+    signal TDATA_Int    : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
     signal ROM_Address  : STD_LOGIC_VECTOR(10 downto 0) := (others => '0');
     signal ROM_Data     : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
     signal DataBuffer   : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
+
+    constant ZERO       : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
 
     component ROM_blk_mem_gen_0_0 is
         Port (  clka : in STD_LOGIC;
@@ -74,7 +78,7 @@ begin
                                             clka => ACLK
                                             );
 
-    process(ACLK, ARESETN, TREADY, DataBuffer, CurrentState, Address)
+    process(ACLK, ARESETN, M_TREADY, DataBuffer, CurrentState, Address)
     begin
         if(rising_edge(ACLK)) then
             case CurrentState is
@@ -91,46 +95,40 @@ begin
                     end if;
 
                 when EndOfReset =>
-                    CurrentState <= WaitForReady;
-
-                when WaitForReady =>
-                    TVALID_Int <= '0';
-                    DataBuffer <= ROM_Data;
-
-                    -- Wait until TREADY from the slave
-                    if      TREADY = '1' then CurrentState <= WaitForReady;
-                    else    CurrentState <= SetData;
+                    CurrentState <= ReadData;
+                    
+                when ReadData =>
+                    if(DUAL_CHANNEL_DATA = true) then
+                        TDATA_Int <= ROM_Data & ROM_Data;
+                    else
+                        TDATA_Int <= ZERO & ROM_Data;
                     end if;
                     
-                when SetData =>
                     TVALID_Int <= '1';
-                    TDATA_Int <= DataBuffer;
-                    TID_Int <= STD_LOGIC_VECTOR(to_unsigned(Address, 8));
                     
-                    -- Reset the address counter if the end is reached and set TLAST to indicate the end of the package
-                    if      Address = 99 then TLAST_Int <= '1';  
-                                              Address <= 0;
-                    else    TLAST_Int <= '0';
-                            Address <= Address + 1;
+                    if      Address = 99 then   Address <= 0;
+                                                TLAST_Int <= '1';
+                    else    Address <= Address + 1;
+                            TLAST_Int <= '0';
                     end if;
                     
-                    CurrentState <= WaitForHandShake;
-
-                when WaitForHandShake =>
+                    CurrentState <= WaitForReady;
                     
-                    -- Wait until the slave has handshaked the data, signaled by pulling TREADY high
-                    if      TREADY = '1' then CurrentState <= WaitForReady;
-                                              TVALID_Int <= '0';
+                when WaitForReady =>
+                    -- Wait until TREADY from the slave
+                    if      M_TREADY = '1' then CurrentState <= ReadData;
+                                                TVALID_Int <= '0';
+                    else    CurrentState <= WaitForReady;
                     end if;
-
+             
             end case;
         end if;
     end process;
 
-    TDATA <= TDATA_Int;
-    TLAST <= TLAST_Int;
-    TID <= TID_Int;
-    TVALID <= TVALID_Int;
+    M_TDATA <= TDATA_Int;
+    M_TLAST <= TLAST_Int;
+    M_TID <= TID_Int;
+    M_TVALID <= TVALID_Int;
     ROM_Address <= STD_LOGIC_VECTOR(to_unsigned(Address, ROM_Address'length));
 
 end AXI4S_ROM_Arch;
