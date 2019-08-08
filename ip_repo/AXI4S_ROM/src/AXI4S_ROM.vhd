@@ -58,25 +58,25 @@ architecture AXI4S_ROM_Arch of AXI4S_ROM is
 
     signal TID_Int      : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal TDATA_Int    : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
-    signal ROM_Address  : STD_LOGIC_VECTOR(10 downto 0) := (others => '0');
+    signal ROM_Address  : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal ROM_Data     : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
     signal DataBuffer   : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
 
     constant ZERO       : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
 
-    component ROM_blk_mem_gen_0_0 is
-        Port (  clka : in STD_LOGIC;
-                addra : in STD_LOGIC_VECTOR(10 downto 0);
-                douta : out STD_LOGIC_VECTOR(15 downto 0)
+    component ROM is
+        Port (  Clock   : in STD_LOGIC;
+                Address : in STD_LOGIC_VECTOR(7 downto 0);
+                DataOut : out STD_LOGIC_VECTOR(15 downto 0)
                 );
     end component;
 
 begin
 
-    DataROM : ROM_blk_mem_gen_0_0 port map (addra => ROM_Address,
-                                            douta => ROM_Data,
-                                            clka => ACLK
-                                            );
+    DataROM : ROM port map (    Clock => ACLK,
+                                Address => ROM_Address,
+                                DataOut => ROM_Data
+                                );
 
     process(ACLK, ARESETN, M_TREADY, DataBuffer, CurrentState, Address)
     begin
@@ -109,7 +109,6 @@ begin
                     if      Address = 99 then   Address <= 0;
                                                 TLAST_Int <= '1';
                     else    Address <= Address + 1;
-                            TLAST_Int <= '0';
                     end if;
                     
                     CurrentState <= WaitForReady;
@@ -118,6 +117,7 @@ begin
                     -- Wait until TREADY from the slave
                     if      M_TREADY = '1' then CurrentState <= ReadData;
                                                 TVALID_Int <= '0';
+                                                TLAST_Int <= '0';
                     else    CurrentState <= WaitForReady;
                     end if;
              
