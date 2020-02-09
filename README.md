@@ -23,4 +23,4 @@ This is my private ip repository with different IP cores for my Zybo.
 
 ## Maintainer
 
-- [Daniel Kampert](DanielKampert@kampis-elektroecke.de)
+- [Daniel Kampert](mailto:DanielKampert@kampis-elektroecke.de)

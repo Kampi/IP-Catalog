@@ -6,6 +6,8 @@ proc init_gui { IPINST } {
 
   set CLOCK_FREQ [ipgui::add_param $IPINST -name "CLOCK_FREQ"]
   set_property tooltip {Clock frequency for the LCD interface.} ${CLOCK_FREQ}
+  set CONFIG [ipgui::add_param $IPINST -name "CONFIG"]
+  set_property tooltip {Select the default display configuration.} ${CONFIG}
 
 }
 

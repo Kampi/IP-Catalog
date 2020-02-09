@@ -42,7 +42,7 @@ int AxiSegment_Write(AxiSegment* InstancePtr, u8 Value)
 	{
 		return XST_FAILURE;
 	}
-	
+
 	while(ValueTemp > 0) 
 	{
        Temp |= (ValueTemp % 0x0A) << (Shift++ << 0x02);
