@@ -46,7 +46,6 @@
 #include "xparameters.h"
 #include "axisegment.h"
 
-
 AxiSegment_Config* AxiSegment_LookupConfig(u16 DeviceId)
 {
 	AxiSegment_Config* CfgPtr = NULL;
