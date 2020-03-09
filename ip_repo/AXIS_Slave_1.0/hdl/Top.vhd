@@ -7,9 +7,9 @@
 -- Module Name:         Top - Top_Arch
 -- Project Name: 
 -- Target Devices: 
--- Tool Versions: 
--- Description:         Simple AXIS master IP core.
--- 
+-- Tool Versions: 		Vivado 2019.2
+-- Description: 		AXI-Stream Master implementation from
+--                      <>
 -- Dependencies: 
 -- 
 -- Revision:
@@ -32,8 +32,6 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Top is
-    Generic (   LENGTH  : INTEGER := 100
-                );
     Port (  clk         : in STD_LOGIC;
             resetn      : in STD_LOGIC;
             
@@ -52,8 +50,6 @@ architecture Top_Arch of Top is
     type State_t is (Reset, WaitForTriggerHigh, WaitForTriggerLow, WaitForReady, WaitForSlave);
 
     signal TransmitState    : State_t   := Reset;
-    
-    signal IsLast           : STD_LOGIC := '0';
 
     signal Counter          : INTEGER   := 0;
 
@@ -90,10 +86,10 @@ begin
                         end if;                 
 
                     when WaitForReady =>
-                        TDATA_TXD <= std_logic_vector(to_unsigned(Counter, 32));
+                        TDATA_TXD <= STD_LOGIC_VECTOR(to_unsigned(Counter, 32));
                         TVALID_TXD <= '1';
                         
-                        if(Counter < (LENGTH - 1)) then
+                        if(Counter < 99) then
                             TLAST_TXD <= '0';
                         else
                             TLAST_TXD <= '1';
@@ -106,7 +102,7 @@ begin
                             TVALID_TXD <= '0';
                             TLAST_TXD <= '0';
                             
-                            if(Counter < (LENGTH - 1)) then
+                            if(Counter < 99) then
                                 Counter <= Counter + 1;
                                 TransmitState <= WaitForReady;
                             else

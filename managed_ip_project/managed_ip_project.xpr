@@ -3,11 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<<<<<<< HEAD
 <Project Version="7" Minor="44" Path="C:/Users/Daniel.Kampert/Desktop/Git/IP/managed_ip_project/managed_ip_project.xpr">
-=======
-<Project Version="7" Minor="44" Path="G:/Dropbox/Git/IP/managed_ip_project/managed_ip_project.xpr">
->>>>>>> 0ea4f7503799af5960934af8a9d9143318abd452
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="9557a586bc93497ca4c3e62c354620c3"/>
@@ -28,7 +24,6 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Managed_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/AXIS_Master_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../../IP"/>
     <Option Name="IPCachePermission" Val="disable"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
