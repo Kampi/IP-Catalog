@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -42,17 +42,18 @@ entity Top is
             TREADY_RXD  : out STD_LOGIC;
             TVALID_RXD  : in STD_LOGIC;
             TLAST_RXD   : in STD_LOGIC;
-            
+
+            Index       : in STD_LOGIC_VECTOR(4 downto 0);
             DataOut     : out STD_LOGIC_VECTOR(31 downto 0)
             );
 end Top;
 
 architecture Top_Arch of Top is
 
-    type State_t is (Reset, Ready);
+    type State_t is (Reset, Ready, WaitForValid);
     type FIFO_t is array(0 to (FIFO_SIZE - 1)) of STD_LOGIC_VECTOR(31 downto 0);
 
-    signal TransmitState    : State_t   := Reset;
+    signal CurrentState     : State_t   := Reset;
 
     signal FIFO             : FIFO_t    := (others => (others => '0'));
     signal FIFO_Counter     : INTEGER   := 0;
@@ -64,36 +65,38 @@ begin
     begin
         if(rising_edge(clk)) then
             if(resetn = '0') then
-                TransmitState <= Reset;
+                CurrentState <= Reset;
             else
-                case TransmitState is
-
+                case CurrentState is
                     when Reset =>
                         FIFO <= (others => (others => '0'));
                         FIFO_Counter <= 0;
-                        TransmitState <= Ready;
+                        CurrentState <= Ready;
 
                     when Ready =>
+                        TREADY_RXD <= '1';
+                        CurrentState <= WaitForValid;
+
+                    when WaitForValid =>
                         if(TVALID_RXD = '1') then
                             TREADY_RXD <= '0';
-                            
                             FIFO(FIFO_Counter) <= TDATA_RXD;
-
+                            
                             if((FIFO_Counter = (FIFO_SIZE - 1)) or (TLAST_RXD = '1')) then
                                 FIFO_Counter <= 0;
                             else
                                 FIFO_Counter <= FIFO_Counter + 1;
                             end if;
+                            
+                            CurrentState <= Ready;
                         else
-                            TREADY_RXD <= '1';
+                            CurrentState <= WaitForValid;
                         end if;
-                        
-                        TransmitState <= Ready;
 
                 end case;
             end if;
         end if;
     end process;
 
-    DataOut <= FIFO(0);
+    DataOut <= FIFO(to_integer(UNSIGNED(Index)));
 end Top_Arch;

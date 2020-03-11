@@ -1,7 +1,8 @@
 # Definitional proc to organize widgets for parameters.
 proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
-  ipgui::add_param $IPINST -name "FIFO_SIZE"
+  set FIFO_SIZE [ipgui::add_param $IPINST -name "FIFO_SIZE"]
+  set_property tooltip {FIFO size in 32 bit words.} ${FIFO_SIZE}
 
 }
 
