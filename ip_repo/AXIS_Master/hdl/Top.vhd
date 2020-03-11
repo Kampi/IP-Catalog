@@ -34,8 +34,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity Top is
     Generic (   LENGTH  : INTEGER := 100
                 );
-    Port (  clk         : in STD_LOGIC;
-            resetn      : in STD_LOGIC;
+    Port (  aclk        : in STD_LOGIC;
+            aresetn     : in STD_LOGIC;
             
             Trigger      : in STD_LOGIC;
 
@@ -59,10 +59,10 @@ architecture Top_Arch of Top is
 
 begin
 
-    process(clk, resetn)
+    process(aclk, aresetn)
     begin
-        if(rising_edge(clk)) then
-            if(resetn = '0') then
+        if(rising_edge(aclk)) then
+            if(aresetn = '0') then
                 TransmitState <= Reset;
             else
                 case TransmitState is
