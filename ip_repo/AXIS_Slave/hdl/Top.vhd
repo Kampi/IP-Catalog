@@ -8,8 +8,8 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 		Vivado 2019.2
--- Description: 		AXI-Stream Master implementation from
---                      <>
+-- Description:         Simple AXIS Slave IP core.
+--
 -- Dependencies: 
 -- 
 -- Revision:
@@ -32,26 +32,31 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Top is
+    Generic (   FIFO_SIZE   : INTEGER := 32
+                );
     Port (  clk         : in STD_LOGIC;
             resetn      : in STD_LOGIC;
-            
-            Trigger      : in STD_LOGIC;
 
             -- Transmission interface
-            TDATA_TXD   : out STD_LOGIC_VECTOR(31 downto 0);
-            TREADY_TXD  : in STD_LOGIC;
-            TVALID_TXD  : out STD_LOGIC;
-            TLAST_TXD   : out STD_LOGIC
+            TDATA_RXD   : in STD_LOGIC_VECTOR(31 downto 0);
+            TREADY_RXD  : out STD_LOGIC;
+            TVALID_RXD  : in STD_LOGIC;
+            TLAST_RXD   : in STD_LOGIC;
+
+            Index       : in STD_LOGIC_VECTOR(4 downto 0);
+            DataOut     : out STD_LOGIC_VECTOR(31 downto 0)
             );
 end Top;
 
 architecture Top_Arch of Top is
 
-    type State_t is (Reset, WaitForTriggerHigh, WaitForTriggerLow, WaitForReady, WaitForSlave);
+    type State_t is (Reset, Ready, WaitForValid);
+    type FIFO_t is array(0 to (FIFO_SIZE - 1)) of STD_LOGIC_VECTOR(31 downto 0);
 
-    signal TransmitState    : State_t   := Reset;
+    signal CurrentState     : State_t   := Reset;
 
-    signal Counter          : INTEGER   := 0;
+    signal FIFO             : FIFO_t    := (others => (others => '0'));
+    signal FIFO_Counter     : INTEGER   := 0;
 
 begin
 
@@ -60,60 +65,38 @@ begin
     begin
         if(rising_edge(clk)) then
             if(resetn = '0') then
-                TransmitState <= Reset;
+                CurrentState <= Reset;
             else
-                case TransmitState is
-
+                case CurrentState is
                     when Reset =>
-                        Counter <= 0;
-                        TDATA_TXD <= (others => '0');
-                        TVALID_TXD <= '0';
-                        TLAST_TXD <= '0';
-                        TransmitState <= WaitForTriggerHigh;
+                        FIFO <= (others => (others => '0'));
+                        FIFO_Counter <= 0;
+                        CurrentState <= Ready;
 
-                    when WaitForTriggerHigh =>
-                        if(Trigger = '1') then
-                            TransmitState <= WaitForTriggerLow;
-                        else
-                            TransmitState <= WaitForTriggerHigh;
-                        end if;
-                   
-                    when WaitForTriggerLow =>
-                        if(Trigger = '0') then
-                            TransmitState <= WaitForReady;
-                        else
-                            TransmitState <= WaitForTriggerLow;
-                        end if;                 
+                    when Ready =>
+                        TREADY_RXD <= '1';
+                        CurrentState <= WaitForValid;
 
-                    when WaitForReady =>
-                        TDATA_TXD <= STD_LOGIC_VECTOR(to_unsigned(Counter, 32));
-                        TVALID_TXD <= '1';
-                        
-                        if(Counter < 99) then
-                            TLAST_TXD <= '0';
-                        else
-                            TLAST_TXD <= '1';
-                        end if;
-
-                        TransmitState <= WaitForSlave;
-
-                    when WaitForSlave =>
-                        if(TREADY_TXD = '1') then
-                            TVALID_TXD <= '0';
-                            TLAST_TXD <= '0';
+                    when WaitForValid =>
+                        if(TVALID_RXD = '1') then
+                            TREADY_RXD <= '0';
+                            FIFO(FIFO_Counter) <= TDATA_RXD;
                             
-                            if(Counter < 99) then
-                                Counter <= Counter + 1;
-                                TransmitState <= WaitForReady;
+                            if((FIFO_Counter = (FIFO_SIZE - 1)) or (TLAST_RXD = '1')) then
+                                FIFO_Counter <= 0;
                             else
-                                Counter <= 0;
-                                TransmitState <= WaitForTriggerHigh;
+                                FIFO_Counter <= FIFO_Counter + 1;
                             end if;
+                            
+                            CurrentState <= Ready;
                         else
-                            TransmitState <= WaitForSlave;
+                            CurrentState <= WaitForValid;
                         end if;
+
                 end case;
             end if;
         end if;
     end process;
+
+    DataOut <= FIFO(to_integer(UNSIGNED(Index)));
 end Top_Arch;

@@ -298,7 +298,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/Top.vhd</spirit:name>
+        <spirit:name>hdl/Top.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_38186fa9</spirit:userFileType>
       </spirit:file>
@@ -306,7 +306,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/Top.vhd</spirit:name>
+        <spirit:name>hdl/Top.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -375,7 +375,7 @@
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>www.Kampis-Elektroecke.com:Kampis-Elektroecke:AXI-Stream_Slave:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2020-03-11T11:24:19Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2020-03-11T13:10:00Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1b8b9791_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI-Stream_Slave_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7a7fab0b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI-Stream_Slave_1.0</xilinx:tag>
@@ -568,6 +568,28 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@238e5b3d_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@c107be_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5885e4a1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13aae5e9_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f45fc11_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@152a9f1f_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a9ffdc1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b88def6_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15c23fdb_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ef9bb7f_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@632c63b7_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4933f63c_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44e222bc_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54a711a1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13f53ae4_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3be346a3_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5388a019_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a06fb89_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@308b5551_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2fa06d05_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@84d71bb_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@130047f6_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@665ccb70_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37fdba6b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ef2f46b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Slave</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
