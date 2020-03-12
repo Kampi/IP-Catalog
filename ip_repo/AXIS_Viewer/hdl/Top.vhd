@@ -8,12 +8,12 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 		Vivado 2019.2
--- Description:         Simple AXIS Slave IP core.
+-- Description:         AXI-Stream data viewer.
 --
 -- Dependencies: 
 -- 
 -- Revision:
---      Revision 		0.01 - File Created
+--      Revision        0.01 - File Created
 --
 -- Additional Comments:
 -- 
@@ -32,8 +32,6 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Top is
-    Generic (   FIFO_SIZE   : INTEGER := 32
-                );
     Port (  aclk        : in STD_LOGIC;
             aresetn     : in STD_LOGIC;
 
@@ -43,20 +41,16 @@ entity Top is
             TVALID_RXD  : in STD_LOGIC;
             TLAST_RXD   : in STD_LOGIC;
 
-            Index       : in STD_LOGIC_VECTOR(4 downto 0);
+            NextWord    : in STD_LOGIC;
             DataOut     : out STD_LOGIC_VECTOR(31 downto 0)
             );
 end Top;
 
 architecture Top_Arch of Top is
 
-    type State_t is (Reset, Ready, WaitForValid);
-    type FIFO_t is array(0 to (FIFO_SIZE - 1)) of STD_LOGIC_VECTOR(31 downto 0);
+    type State_t is (Reset, WaitForOne, WaitForValid, WaitForZero);
 
     signal CurrentState     : State_t   := Reset;
-
-    signal FIFO             : FIFO_t    := (others => (others => '0'));
-    signal FIFO_Counter     : INTEGER   := 0;
 
 begin
 
@@ -68,34 +62,38 @@ begin
             else
                 case CurrentState is
                     when Reset =>
-                        FIFO <= (others => (others => '0'));
-                        FIFO_Counter <= 0;
-                        CurrentState <= Ready;
+                        DataOut <= (others => '0');
 
-                    when Ready =>
-                        TREADY_RXD <= '1';
-                        CurrentState <= WaitForValid;
+                        CurrentState <= WaitForOne;
+
+                    when WaitForOne =>
+                        if(NextWord = '1') then
+                            TREADY_RXD <= '1';
+
+                            CurrentState <= WaitForValid;
+                        else
+                            CurrentState <= WaitForOne;
+                        end if;
 
                     when WaitForValid =>
                         if(TVALID_RXD = '1') then
                             TREADY_RXD <= '0';
-                            FIFO(FIFO_Counter) <= TDATA_RXD;
-                            
-                            if((FIFO_Counter = (FIFO_SIZE - 1)) or (TLAST_RXD = '1')) then
-                                FIFO_Counter <= 0;
-                            else
-                                FIFO_Counter <= FIFO_Counter + 1;
-                            end if;
-                            
-                            CurrentState <= Ready;
+                            DataOut <= TDATA_RXD;
+
+                            CurrentState <= WaitForZero;
                         else
                             CurrentState <= WaitForValid;
+                        end if;
+
+                    when WaitForZero =>
+                        if(NextWord = '1') then
+                            CurrentState <= WaitForZero;
+                        else
+                            CurrentState <= WaitForOne;
                         end if;
 
                 end case;
             end if;
         end if;
     end process;
-
-    DataOut <= FIFO(to_integer(UNSIGNED(Index)));
 end Top_Arch;

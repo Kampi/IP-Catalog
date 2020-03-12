@@ -13,7 +13,7 @@
 -- Dependencies: 
 -- 
 -- Revision:
---      Revision 0.01 - File Created
+--      Revision 		0.01 - File Created
 --
 -- Additional Comments:
 -- 
@@ -59,14 +59,13 @@ architecture Top_Arch of Top is
 
 begin
 
-    process(aclk, aresetn)
+    process(aclk)
     begin
         if(rising_edge(aclk)) then
             if(aresetn = '0') then
                 TransmitState <= Reset;
             else
                 case TransmitState is
-
                     when Reset =>
                         Counter <= 0;
                         TDATA_TXD <= (others => '0');
