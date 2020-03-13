@@ -8,7 +8,7 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 		Vivado 2019.2
--- Description:         Simple AXIS Slave IP core.
+-- Description:         Simple AXIS slave IP core.
 --
 -- Dependencies: 
 -- 

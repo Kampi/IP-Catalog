@@ -108,7 +108,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5c67a7c0</spirit:value>
+            <spirit:value>8b5deaae</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -124,7 +124,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5c67a7c0</spirit:value>
+            <spirit:value>8b5deaae</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -285,7 +285,7 @@
       <spirit:file>
         <spirit:name>hdl/Top.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_5c67a7c0</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_8b5deaae</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -351,11 +351,11 @@
       <xilinx:displayName>AXI-Stream Viewer</xilinx:displayName>
       <xilinx:vendorDisplayName>Kampis-Elektroecke</xilinx:vendorDisplayName>
       <xilinx:vendorURL>https://www.kampis-elektroecke.de</xilinx:vendorURL>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>www.Kampis-Elektroecke.com:Kampis-Elektroecke:AXI-Stream_Slave:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2020-03-13T07:14:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2020-03-13T09:32:50Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1b8b9791_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI-Stream_Slave_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7a7fab0b_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXI-Stream_Slave_1.0</xilinx:tag>
@@ -614,12 +614,22 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@289a3d9a_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@aab27f1_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2e86ee09_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5169e60a_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75ff3551_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37063414_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@422ce774_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41b58957_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79426538_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2db344d3_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@427456a2_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c012cb9_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@467c280e_ARCHIVE_LOCATION">c:/Users/Daniel.Kampert/Desktop/Git/IP/ip_repo/AXIS_Viewer</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="36242beb"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="2cf43603"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0c26e56d"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="906ac8e9"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="20b4d0d7"/>
     </xilinx:packagingInfo>

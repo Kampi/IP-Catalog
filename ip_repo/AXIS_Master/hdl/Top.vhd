@@ -7,7 +7,7 @@
 -- Module Name:         Top - Top_Arch
 -- Project Name: 
 -- Target Devices: 
--- Tool Versions: 
+-- Tool Versions: 		Vivado 2019.2
 -- Description:         Simple AXIS master IP core.
 -- 
 -- Dependencies: 
