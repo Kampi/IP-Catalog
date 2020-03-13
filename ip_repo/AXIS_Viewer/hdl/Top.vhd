@@ -68,16 +68,14 @@ begin
 
                     when WaitForOne =>
                         if(NextWord = '1') then
-                            TREADY_RXD <= '1';
-
                             CurrentState <= WaitForValid;
                         else
                             CurrentState <= WaitForOne;
                         end if;
 
                     when WaitForValid =>
+                        TREADY_RXD <= '1';
                         if(TVALID_RXD = '1') then
-                            TREADY_RXD <= '0';
                             DataOut <= TDATA_RXD;
 
                             CurrentState <= WaitForZero;
@@ -86,6 +84,8 @@ begin
                         end if;
 
                     when WaitForZero =>
+                        TREADY_RXD <= '0';
+
                         if(NextWord = '1') then
                             CurrentState <= WaitForZero;
                         else
