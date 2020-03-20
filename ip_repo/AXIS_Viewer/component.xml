@@ -101,14 +101,14 @@
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>Top</spirit:modelName>
+        <spirit:modelName>AXIS_Viewer</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8b5deaae</spirit:value>
+            <spirit:value>619b940c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -117,14 +117,14 @@
         <spirit:displayName>VHDL Simulation</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>Top</spirit:modelName>
+        <spirit:modelName>AXIS_Viewer</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8b5deaae</spirit:value>
+            <spirit:value>619b940c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -142,24 +142,10 @@
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
-      <spirit:view>
-        <spirit:name>bd_tcl</spirit:name>
-        <spirit:displayName>Block Diagram</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:block.diagram</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>bd_tcl_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>16328387</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>aclk</spirit:name>
+        <spirit:name>ACLK</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -172,7 +158,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>aresetn</spirit:name>
+        <spirit:name>ARESETn</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -283,15 +269,15 @@
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/Top.vhd</spirit:name>
+        <spirit:name>hdl/AXIS_Viewer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8b5deaae</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_619b940c</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/Top.vhd</spirit:name>
+        <spirit:name>hdl/AXIS_Viewer.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -302,13 +288,6 @@
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_abd1bb30</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>bd_tcl_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>bd/bd.tcl</spirit:name>
-        <spirit:fileType>tclSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -351,17 +330,17 @@
       <xilinx:displayName>AXI-Stream Viewer</xilinx:displayName>
       <xilinx:vendorDisplayName>Kampis-Elektroecke</xilinx:vendorDisplayName>
       <xilinx:vendorURL>https://www.kampis-elektroecke.de</xilinx:vendorURL>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>www.Kampis-Elektroecke.com:Kampis-Elektroecke:AXI-Stream_Slave:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2020-03-13T09:32:50Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2020-03-20T10:01:53Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="36242beb"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0c26e56d"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="906ac8e9"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e277d58a"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="f7fda8bc"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="20b4d0d7"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
