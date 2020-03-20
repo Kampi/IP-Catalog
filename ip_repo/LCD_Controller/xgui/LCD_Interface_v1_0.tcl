@@ -2,12 +2,12 @@
 proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
   #Adding Page
-  ipgui::add_page $IPINST -name "Page 0"
-
-  set CLOCK_FREQ [ipgui::add_param $IPINST -name "CLOCK_FREQ"]
-  set_property tooltip {Clock frequency for the LCD interface.} ${CLOCK_FREQ}
-  set CONFIG [ipgui::add_param $IPINST -name "CONFIG"]
+  set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
+  set CONFIG [ipgui::add_param $IPINST -name "CONFIG" -parent ${Page_0}]
   set_property tooltip {Select the default display configuration.} ${CONFIG}
+  set CLOCK_FREQ [ipgui::add_param $IPINST -name "CLOCK_FREQ" -parent ${Page_0}]
+  set_property tooltip {Clock frequency for the LCD interface.} ${CLOCK_FREQ}
+
 
 }
 

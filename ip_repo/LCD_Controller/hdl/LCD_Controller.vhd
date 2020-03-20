@@ -35,8 +35,8 @@ entity LCD_Controller is
     Generic (   CONFIG      : INTEGER := 0;                         -- Default configuration index.
                 CLOCK_FREQ  : INTEGER := 125                        -- Input clock frequency in MHz.
                 );
-    Port (  Clock   : in STD_LOGIC;
-            ResetN  : in STD_LOGIC;
+    Port (  Clock   : in STD_LOGIC;									-- Interface clock signal
+            nReset  : in STD_LOGIC;									-- Interface reset (active low)
 
             -- Communication bus
             Data    : in STD_LOGIC_VECTOR(7 downto 0);
@@ -92,7 +92,7 @@ begin
         variable usCounter  : INTEGER := 0;
     begin
         if(rising_edge(Clock)) then
-            if(ResetN = '0') then
+            if(nReset = '0') then
                 usCounter := 0;
                 Ready <= '0';
                 LCD_E <= '0';

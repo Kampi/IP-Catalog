@@ -6,7 +6,7 @@
   <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
-      <spirit:name>ResetN</spirit:name>
+      <spirit:name>nReset</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -16,14 +16,14 @@
             <spirit:name>RST</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>resetn</spirit:name>
+            <spirit:name>nReset</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.RESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.NRESET.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -45,7 +45,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLOCK.ASSOCIATED_RESET">ResetN</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLOCK.ASSOCIATED_RESET">nReset</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>452725ad</spirit:value>
+            <spirit:value>78420121</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -84,7 +84,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>452725ad</spirit:value>
+            <spirit:value>78420121</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -98,7 +98,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1105382a</spirit:value>
+            <spirit:value>4fa9093c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -118,7 +118,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>ResetN</spirit:name>
+        <spirit:name>nReset</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -267,18 +267,16 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/LCD_Controller.vhd</spirit:name>
+        <spirit:name>hdl/LCD_Controller.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_452725ad</spirit:userFileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_78420121</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/LCD_Controller.vhd</spirit:name>
+        <spirit:name>hdl/LCD_Controller.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -286,7 +284,7 @@
       <spirit:file>
         <spirit:name>xgui/LCD_Interface_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1105382a</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_4fa9093c</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -299,38 +297,38 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CLOCK_FREQ</spirit:name>
-      <spirit:displayName>Clock Freq [MHz]</spirit:displayName>
+      <spirit:displayName>Clock frequency [MHz]</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.CLOCK_FREQ">125</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CONFIG</spirit:name>
-      <spirit:displayName>Config</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.CONFIG">0</spirit:value>
+      <spirit:displayName>Configuration</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.CONFIG" spirit:minimum="0" spirit:maximum="1" spirit:rangeType="long">0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:supportedFamilies>
-        <xilinx:family xilinx:lifeCycle="Production">virtex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qvirtex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">akintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">spartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aspartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexuplusHBM</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintexu</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">virtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">qvirtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">kintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">kintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">qkintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">qkintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">akintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">artix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">artix7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">aartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">qartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">zynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">qzynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">azynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">spartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">aspartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">virtexuplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">virtexuplusHBM</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">zynquplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">kintexu</xilinx:family>
       </xilinx:supportedFamilies>
       <xilinx:taxonomies>
         <xilinx:taxonomy>/Kampis-Elektroecke</xilinx:taxonomy>
@@ -344,126 +342,15 @@
         <xilinx:canUpgradeFrom>xilinx.com:user:Top:1.0</xilinx:canUpgradeFrom>
         <xilinx:canUpgradeFrom>Kampis-Elektroecke:Kampis-Elektroecke:LCD_Interface:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2020-02-01T21:56:53Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@67bd7f08_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@b6e6786_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@28d94e52_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@52c29b95_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3766c7c1_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ad89d9e_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3bee56e9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@471b921_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@46bf1f42_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@51579d6f_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@56d3b9fe_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@54d6db2_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@b46d546_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@d661a90_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13a4181e_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@616a6f8a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4221ad96_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4bf54861_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c43d578_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d6029e7_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4162c084_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d31a783_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2bb25d34_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@459a3c92_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@771368b9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18bac426_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@55a13013_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e7393b9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@63bdfbeb_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5da71629_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@8680d7a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e2d5cbd_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@56941187_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c9c994_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@314344e5_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cdda2f9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@757414ef_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2035b718_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@21d04595_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@8f28e68_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@68fa78a9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@57706c0d_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3207b51e_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6032c686_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@11f564ab_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7685b0a3_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a4b8d6d_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@e48ca82_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13a2d5e4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@67e99554_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c803e65_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cfb3435_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c457735_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d0a9a45_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@509fa2f2_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d953388_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@45d0ca77_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@46ac800f_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@55e9db29_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@87c6d26_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fe74f65_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bef5be5_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b44e6f4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c705f72_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@14244758_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36ac9f82_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@29c74e77_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@33ded24e_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13157156_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@45c98c29_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a715dac_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5895459_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@bbd3f27_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7783c718_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@76107d9e_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@498f7c3a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@40651f1b_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@cd1e680_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2da7a40c_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@50e8e225_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f1f68c6_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f717262_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bfe99d3_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@70b78ad4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@16f60665_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1778115c_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@dec6905_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d70d2ef_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@597e3470_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c3e7c62_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@64e1b7c9_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e58bf34_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@167e23b4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18cf6ddc_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@21a45c3a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f921bd4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5df92d2_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a226b81_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@739f406a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7cc47b90_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f7ded35_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@66de33f2_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@27660cb_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a15e887_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e7766a4_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@364e255c_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4662a09a_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c49795d_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@11852e2c_ARCHIVE_LOCATION">g:/Dropbox/Git/IP/ip_repo/LCD_Controller</xilinx:tag>
-      </xilinx:tags>
+      <xilinx:coreCreationDateTime>2020-03-20T09:16:29Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="5f4b1413"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="19057755"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="7bebfc6c"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="56e7b6e5"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d0e237e5"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="dbc18eea"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="007c3486"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="77a7efd1"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="53eaa200"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

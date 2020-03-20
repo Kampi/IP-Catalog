@@ -1,4 +1,0 @@
-2018.2: 
-* Version 1.1.0 (Rev. 1) 
-* Initial Version
-
