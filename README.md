@@ -10,7 +10,7 @@
 
 ## About
 
-This is my private ip repository with different IP cores for my Zybo.
+This is my private ip repository with different IP cores for my FPGA projects.
 
 ## Cores
 
