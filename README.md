@@ -16,10 +16,12 @@ This is my private ip repository with different IP cores for my Zybo.
 
 | **IP core** | **Description** |
 |-------------------|----------------------------|
-| VGA | A simple VGA character display for 640x480 screens. It contains a full ASCII table and a 80x60 display ROM. |
-| Debounce | Simple I/O debounce. |
-| AXI_VGA | AXI wrapper for my VGA core. |
-| AXI_Segment | AXI seven segment driver for the [digilent SSD PMOD](https://store.digilentinc.com/pmod-ssd-seven-segment-display/). |
+| AXIS_Master | AXI-Stream master IP implementation example. |
+| AXIS_Slave | AXI-Stream slave IP implementation example. |
+| AXIS_Viewer | AXI-Stream data viewer IP implementation example. |
+| Debounce | Debounce module for I/O. |
+| LCD_Controller | Display controller for HD44780 liquid crystal displays. |
+| VGA_Decimate | VGA split module for Xilinx AXI4-Stream to Video Out IP. |
 
 ## Maintainer
 
