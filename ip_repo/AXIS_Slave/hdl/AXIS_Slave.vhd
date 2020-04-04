@@ -36,13 +36,10 @@ entity AXIS_Slave is
                 );
     Port (  ACLK        : in STD_LOGIC;
             ARESETn     : in STD_LOGIC;
-
-            -- AXI-Stream interface
-            TDATA_RXD   : in STD_LOGIC_VECTOR(31 downto 0);
+			TDATA_RXD   : in STD_LOGIC_VECTOR(31 downto 0);
             TREADY_RXD  : out STD_LOGIC;
             TVALID_RXD  : in STD_LOGIC;
             TLAST_RXD   : in STD_LOGIC;
-
             Index       : in STD_LOGIC_VECTOR(4 downto 0);
             DataOut     : out STD_LOGIC_VECTOR(31 downto 0)
             );
