@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2019.2 (64-bit)              -->
+<!-- Product Version: Vivado v2019.2.1 (64-bit)              -->
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="44" Path="C:/Users/Daniel.Kampert/Desktop/Git/IP/managed_ip_project/managed_ip_project.xpr">
+<Project Version="7" Minor="44" Path="G:/Dropbox/Git/IP-Catalog/managed_ip_project/managed_ip_project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="9557a586bc93497ca4c3e62c354620c3"/>
@@ -24,7 +24,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Managed_IP"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../../IP"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo"/>
     <Option Name="IPCachePermission" Val="disable"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>

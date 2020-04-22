@@ -13,7 +13,7 @@
 -- Dependencies: 
 -- 
 -- Revision:
---      Revision 		0.01 - File Created
+-- 	Revision 			0.01 - File Created
 --
 -- Additional Comments:
 -- 
@@ -36,10 +36,7 @@ entity AXIS_Master is
                 );
     Port (  ACLK        : in STD_LOGIC;
             ARESETn     : in STD_LOGIC;
-            
-            Trigger      : in STD_LOGIC;
-
-            -- AXI-Stream interface
+            Trigger     : in STD_LOGIC;
             TDATA_TXD   : out STD_LOGIC_VECTOR(31 downto 0);
             TREADY_TXD  : in STD_LOGIC;
             TVALID_TXD  : out STD_LOGIC;
@@ -52,8 +49,6 @@ architecture AXIS_Master_Arch of AXIS_Master is
     type State_t is (State_Reset, State_WaitForTriggerHigh, State_WaitForTriggerLow, State_WaitForReady, State_WaitForSlave);
 
     signal TransmitState    : State_t   := State_Reset;
-    
-    signal IsLast           : STD_LOGIC := '0';
 
     signal Counter          : INTEGER   := 0;
 
